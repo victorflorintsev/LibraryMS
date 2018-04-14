@@ -38,7 +38,9 @@ namespace LibraryMS
             services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc();
-            services.AddDbContext<LibraryMSContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<LibraryMSContext>(options => 
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
