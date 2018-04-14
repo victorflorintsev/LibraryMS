@@ -1,19 +1,22 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using LibraryData.LIBDBModels;
 
-namespace LibraryMS.LIBDBModels
+namespace LibraryData
 {
-    public partial class LibraryMSContext : DbContext
+    public class LibraryMSContext : DbContext
     {
-        public virtual DbSet<Customer> Customer { get; set; }
-        public virtual DbSet<CustomerType> CustomerType { get; set; }
-        public virtual DbSet<Employee> Employee { get; set; }
-        public virtual DbSet<Media> Media { get; set; }
-        public virtual DbSet<MediaType> MediaType { get; set; }
-        public virtual DbSet<Section> Section { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
-        public virtual DbSet<UserType> UserType { get; set; }
+        public LibraryMSContext(DbContextOptions options) : base(options) { }
+
+        public DbSet<Customer> Customer { get; set; }
+        public DbSet<CustomerType> CustomerType { get; set; }
+        public DbSet<Employee> Employee { get; set; }
+        public DbSet<Media> Media { get; set; }
+        public DbSet<MediaType> MediaType { get; set; }
+        public DbSet<Section> Section { get; set; }
+        public DbSet<Users> Users { get; set; }
+        public DbSet<UserType> UserType { get; set; }
 
         // Unable to generate entity type for table 'LIBDB.MANAGES'. Please see the warning messages.
         // Unable to generate entity type for table 'LIBDB.BORROW'. Please see the warning messages.
@@ -90,7 +93,7 @@ namespace LibraryMS.LIBDBModels
                     .HasColumnName("Phone_Number")
                     .HasColumnType("numeric(10, 0)");
 
-                entity.HasOne(d => d.CustomerNavigation)
+               entity.HasOne(d => d.CustomerNavigation)
                     .WithOne(p => p.Customer)
                     .HasForeignKey<Customer>(d => d.CustomerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)

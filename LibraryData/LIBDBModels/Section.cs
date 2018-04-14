@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace LibraryMS.LIBDBModels
+namespace LibraryData.LIBDBModels
 {
-    public partial class Section
+    public class Section
     {
         public int SectionId { get; set; }
         public string LocationString { get; set; }

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace LibraryMS.LIBDBModels
+namespace LibraryData.LIBDBModels
 {
-    public partial class Customer
+    public class Customer
     {
+
         public string FirstName { get; set; }
         public string MiddleInitial { get; set; }
         public string LastName { get; set; }
@@ -18,7 +19,7 @@ namespace LibraryMS.LIBDBModels
         public string AddressZipcode { get; set; }
         public int CustomerType { get; set; }
 
-        public Users CustomerNavigation { get; set; }
-        public CustomerType CustomerTypeNavigation { get; set; }
+        public virtual Users CustomerNavigation { get; set; }
+        public virtual CustomerType CustomerTypeNavigation { get; set; }
     }
 }

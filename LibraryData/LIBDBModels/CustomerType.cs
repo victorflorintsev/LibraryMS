@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace LibraryMS.LIBDBModels
+namespace LibraryData.LIBDBModels
 {
-    public partial class CustomerType
+    public class CustomerType
     {
         public CustomerType()
         {

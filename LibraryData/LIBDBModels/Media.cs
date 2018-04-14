@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace LibraryMS.LIBDBModels
+namespace LibraryData.LIBDBModels
 {
-    public partial class Media
+    public class Media
     {
         public int MediaId { get; set; }
         public int Isbn { get; set; }

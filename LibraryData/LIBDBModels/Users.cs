@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace LibraryMS.LIBDBModels
+namespace LibraryData.LIBDBModels
 {
-    public partial class Users
+    public class Users
     {
         public int UsernameId { get; set; }
         public string HashedPassword { get; set; }
