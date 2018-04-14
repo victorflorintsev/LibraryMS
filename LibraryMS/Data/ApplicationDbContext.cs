@@ -15,6 +15,13 @@ namespace LibraryMS.Data
         {
         }
 
+        /* protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+            => optionsBuilder
+                .UseSqlServer(@"Server = 72.18.146.251,1533; Initial catalog=cosc3380;Uid=cosc3380;Password=vfegaf$;");  */
+
+      
+
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
