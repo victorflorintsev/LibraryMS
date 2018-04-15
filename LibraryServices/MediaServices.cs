@@ -31,6 +31,11 @@ namespace LibraryServices
             return _context.Media.FirstOrDefault(a => a.MediaId == id).Author;
         }
 
+        public string getGenre(int id)
+        {
+            return _context.Media.FirstOrDefault(a => a.MediaId == id).Genre;
+        }
+
         public Media getbyID(int id)
         {
             return _context.Media.Include(asset=>asset.Title).Include(asset => asset.MediaType).FirstOrDefault(asset => asset.MediaId == id);   
@@ -39,7 +44,12 @@ namespace LibraryServices
         public string getCallNum(int id)
         {
 
-            return _context.Media.FirstOrDefault(a => a.MediaId == id).CallNum;
+            if (_context.Media.Any(a => a.MediaId == id))
+            {
+                return _context.Media.FirstOrDefault(a => a.MediaId == id).CallNum;
+            }
+            else
+                return "";
         }
 
         public int getCopiesLeft(int id)

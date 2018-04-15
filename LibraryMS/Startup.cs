@@ -12,6 +12,7 @@ using LibraryMS.Data;
 using LibraryMS.Models;
 using LibraryMS.Services;
 using LibraryData;
+using LibraryServices;
 
 namespace LibraryMS
 {
@@ -38,6 +39,8 @@ namespace LibraryMS
             services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc();
+            services.AddSingleton(Configuration);
+            services.AddScoped<IMedia, MediaServices>();
             services.AddDbContext<LibraryMSContext>(options => 
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 

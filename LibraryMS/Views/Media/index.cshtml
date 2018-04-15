@@ -1,0 +1,30 @@
+﻿@model LibraryMS.Models.Media.MediaIndexModel
+
+<div id="assets">
+    <h3>Library Catalog</h3>
+    <div id="MediaTable">
+        <table class="table table-condensed" id="MediaIndexTable">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Genre</th>
+                    <th>Author</th>
+                    <th>Call Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var asset in Model.Assets)
+                {
+                <tr class="assetRow">
+
+                    <td class="">@asset.Title</td>
+                    <td class="">@asset.Genre</td>
+                    <td class="">@asset.Author</td>
+                    <td class="">@asset.CallNum</td>
+                </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -15,12 +15,16 @@ namespace LibraryData
         string getTitle(int id);
         int getISBN(int id);
         int getMediaType(int id);
+        string getGenre(int id);
         string getCallNum(int id);
         DateTime getDateAdded(int id);
         int getCopiesLeft(int id);
         int getMaxCopies(int id);
 
-
+        //1->LibraryData Interface
+        //2->Controller
+        //3->Models Listing
+        //4->cshtml
 
     }
 }
