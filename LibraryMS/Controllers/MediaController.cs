@@ -36,5 +36,10 @@ namespace LibraryMS.Controllers
             };
             return View(model);
         }
+
+        public IActionResult AddMedia()
+        {
+            return View();
+        }
     }
 }
