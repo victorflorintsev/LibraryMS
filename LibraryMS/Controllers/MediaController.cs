@@ -36,22 +36,26 @@ namespace LibraryMS.Controllers
             };
             return View(model);
         }
-        //add search field
-        /*
-        public async Task<IActionResult> Index(string searchString)
+        public IActionResult AddMedia()
         {
-            using (LibraryMSContext mediaContext = new LibraryMSContext(options)) {
-                var media = from m in mediaContext.Media
-                            select m;
-            }
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                media = media.Where(s => s.Title.Contains(searchString));
-            }
-
-            return View(await media.ToListAsync());
+            return View();
         }
-        */
-    }
+            //add search field
+            /*
+            public async Task<IActionResult> Index(string searchString)
+            {
+                using (LibraryMSContext mediaContext = new LibraryMSContext(options)) {
+                    var media = from m in mediaContext.Media
+                                select m;
+                }
+
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    media = media.Where(s => s.Title.Contains(searchString));
+                }
+
+                return View(await media.ToListAsync());
+            }
+            */
+        }
 }
