@@ -36,8 +36,20 @@ namespace LibraryMS.Controllers
             };
             return View(model);
         }
-        public IActionResult AddMedia()
+
+        public ActionResult AddMedia()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddMedia(MediaIndexListingModel model)
+        {
+            string title = model.Title;
+            string author = model.Author;
+            int id = model.Id;
+            int mediaType = model.Type;
+            string callnum = model.CallNum;
             return View();
         }
             //add search field
