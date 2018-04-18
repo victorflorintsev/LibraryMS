@@ -1,5 +1,47 @@
 ﻿@page
-@model LibraryMS.Models.Media.MediaIndexModel
+@model LibraryMS.Models.Media.AddMediaModel
 
-<h2>AddMedia</h2>
+<h2>Add Media</h2>
 
+<form method="post">
+    <fieldset>
+        <legend>Please fill out this form</legend>
+
+        <p>
+            <label for="title">Title:</label>
+            <input type="text" name="title" value="" />
+        </p>
+
+        <p>
+            <label for="author">Author:</label>
+            <input type="text" name="author" value="" />
+        </p>
+
+        <p>
+            <label for="callnumber">Call Number:</label>
+            <input type="text" name="callnumber" value="" />
+        </p>
+
+        <p>
+            <label for="genre">Genre:</label>
+            <input type="text" name="genre" value="" />
+        </p>
+
+        <p>
+            <label for="year">Year:</label>
+            <input type="text" name="year" value="" />
+        </p>
+
+        <p>
+            <label for="numcopy">Number of Copies:</label>
+            <input type="text" name="numcopy" value="" />
+        </p>
+
+        <p>
+            <label for="type">Type of Media:</label>
+            <input type="text" name="type" value="" />
+        </p>
+
+        <p><input type="submit" name="buttonSubmit" value="Add Media" /></p>
+    </fieldset>
+</form>
