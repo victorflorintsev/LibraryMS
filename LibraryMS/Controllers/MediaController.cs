@@ -36,10 +36,22 @@ namespace LibraryMS.Controllers
             };
             return View(model);
         }
-
-        public IActionResult AddMedia()
+        //add search field
+        /*
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View();
+            using (LibraryMSContext mediaContext = new LibraryMSContext(options)) {
+                var media = from m in mediaContext.Media
+                            select m;
+            }
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                media = media.Where(s => s.Title.Contains(searchString));
+            }
+
+            return View(await media.ToListAsync());
         }
+        */
     }
 }
