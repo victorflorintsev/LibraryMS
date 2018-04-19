@@ -10,7 +10,7 @@ namespace LibraryMS.Controllers
 {
     public class MediaController : Controller
     {
-        
+
         private IMedia _assets;
         public MediaController(IMedia assets)
         {
@@ -27,7 +27,7 @@ namespace LibraryMS.Controllers
                 CallNum = _assets.getCallNum(result.MediaId),
                 Title = result.Title,
                 Type = _assets.getMediaType(result.MediaId)
-               
+
             });
 
             var model = new MediaIndexModel()
@@ -36,20 +36,12 @@ namespace LibraryMS.Controllers
             };
             return View(model);
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-        //add search field
-        /*
-        public async Task<IActionResult> Index(string searchString)
+        public IActionResult AddMedia()
         {
-            using (LibraryMSContext mediaContext = new LibraryMSContext(options)) {
-                var media = from m in mediaContext.Media
-                            select m;
-            }
->>>>>>> parent of c2f488a... added a search field in Catalog
+            return View();
+        }
+        
 
-<<<<<<< HEAD
         [HttpPost]
         public IActionResult AddMedia(MediaIndexListingModel model)
         {
@@ -65,23 +57,8 @@ namespace LibraryMS.Controllers
             media.MaxCopies = model.CopiesLeft;
             media.Isbn = model.Isbn;
             _assets.Add(media);
-            
+
             return View();
         }
-            //add search field
-            /*
-            public async Task<IActionResult> Index(string searchString)
-=======
-            if (!String.IsNullOrEmpty(searchString))
->>>>>>> e06f224302f98c3fc98ef3f851105569fb13ce5a
-            {
-                media = media.Where(s => s.Title.Contains(searchString));
-            }
-
-            return View(await media.ToListAsync());
-        }
-        */
     }
-=======
->>>>>>> 3605b2987b700687bc0261da6bf3977c53189536
 }
