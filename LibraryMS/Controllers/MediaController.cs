@@ -49,7 +49,11 @@ namespace LibraryMS.Controllers
             media.Title = model.Title;
             media.Author = model.Author;
             media.MediaId = model.Id;
-            media.MediaType = model.Type;
+            LibraryData.LIBDBModels.MediaType type = new LibraryData.LIBDBModels.MediaType();
+            type.MediaTypeId = 0;
+            type.MediaTypeName = "Books";
+            media.MediaNavigation = type;
+            media.MediaType = _assets.getMediaType(0);
             media.CallNum = model.CallNum;
             media.DateAdded = DateTime.Now;
             media.Genre = model.Genre;

@@ -189,12 +189,12 @@ namespace LibraryData
                 entity.Property(e => e.Author)
                     .IsRequired()
                     .HasColumnName("author")
-                    .HasColumnType("nchar(10)");
+                    .HasColumnType("varchar(50)");
 
                 entity.Property(e => e.CallNum)
                     .IsRequired()
                     .HasColumnName("call_num")
-                    .HasColumnType("nchar(10)");
+                    .HasColumnType("varchar(50)");
 
                 entity.Property(e => e.CopiesLeft).HasColumnName("copies_left");
 
@@ -205,7 +205,7 @@ namespace LibraryData
                 entity.Property(e => e.Genre)
                     .IsRequired()
                     .HasColumnName("genre")
-                    .HasColumnType("nchar(15)");
+                    .HasColumnType("varchar(50)");
 
                 entity.Property(e => e.MaxCopies).HasColumnName("max_copies");
 
@@ -214,7 +214,7 @@ namespace LibraryData
                 entity.Property(e => e.Title)
                     .IsRequired()
                     .HasColumnName("title")
-                    .HasColumnType("nchar(50)");
+                    .HasColumnType("varchar(50)");
 
                 entity.HasOne(d => d.MediaNavigation)
                     .WithOne(p => p.Media)
