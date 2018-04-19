@@ -6,40 +6,68 @@
 <body>
     @using (Html.BeginForm("AddMedia", "Media", FormMethod.Post))
     {
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th colspan="2" align="center">Person Details</th>
-            </tr>
-            <tr>
-                <td>Media ID: </td>
-                <td>
-                    @Html.TextBoxFor(m => m.Id)
-                </td>
-            </tr>
-            <tr>
-                <td>Title: </td>
-                <td>
-                    @Html.TextBoxFor(m => m.Title)
-                </td>
-            </tr>
-            <tr>
-                <td>Type: </td>
-                <td>
-                    @Html.DropDownListFor(m => m.Type, new List<SelectListItem>
-                       { new SelectListItem{Text="Books", Value="0"},
-                         new SelectListItem{Text="Videos", Value="1"}}, "Please select")
-                </td>
-            </tr>
-            <tr>
-                <td>Author: </td>
-                <td>
-                    @Html.TextBoxFor(m => m.Author)
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="submit" value="Submit" /></td>
-            </tr>
-        </table>
+	<table cellpadding="0" cellspacing="0">
+		<tr>
+			<th colspan="2" align="center">Person Details</th>
+		</tr>
+
+		<tr>
+			<td>Title: </td>
+			<td>
+				@Html.TextBoxFor(m => m.Title)
+			</td>
+		</tr>
+
+		<tr>
+			<td>Type: </td>
+			<td>
+				@Html.DropDownListFor(m => m.Type, new List<SelectListItem>
+					{ new SelectListItem{Text="Books", Value="0"},
+					new SelectListItem{Text="Videos", Value="1"}}, "Please select")
+			</td>
+		</tr>
+
+		<tr>
+			<td>Author: </td>
+			<td>
+				@Html.TextBoxFor(m => m.Author)
+			</td>
+		</tr>
+
+		<tr>
+			<td>ISBN: </td>
+			<td>
+				@Html.TextBoxFor(m => m.Isbn)
+			</td>
+		</tr>
+
+		<tr>
+			<td>Call Number: </td>
+			<td>
+				@Html.TextBoxFor(m => m.CallNum)
+			</td>
+		</tr>
+
+
+		<tr>
+			<td>Genre: </td>
+			<td>
+				@Html.TextBoxFor(m => m.Genre)
+			</td>
+		</tr>
+
+		<tr>
+			<td>Number of Copies: </td>
+			<td>
+				@Html.TextBoxFor(m => m.CopiesLeft)
+			</td>
+		</tr>
+
+		<tr>
+			<td></td>
+			<td><input type="submit" value="Submit" /></td>
+		</tr>
+
+	</table>
     }
 </body>

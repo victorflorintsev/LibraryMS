@@ -10,7 +10,7 @@ namespace LibraryMS.Controllers
 {
     public class MediaController : Controller
     {
-        
+
         private IMedia _assets;
         public MediaController(IMedia assets)
         {
@@ -27,7 +27,7 @@ namespace LibraryMS.Controllers
                 CallNum = _assets.getCallNum(result.MediaId),
                 Title = result.Title,
                 Type = _assets.getMediaType(result.MediaId)
-               
+
             });
 
             var model = new MediaIndexModel()
@@ -36,38 +36,29 @@ namespace LibraryMS.Controllers
             };
             return View(model);
         }
-
-        public ActionResult AddMedia()
+        public IActionResult AddMedia()
         {
             return View();
         }
+        
 
         [HttpPost]
         public IActionResult AddMedia(MediaIndexListingModel model)
         {
-            string title = model.Title;
-            string author = model.Author;
-            int id = model.Id;
-            int mediaType = model.Type;
-            string callnum = model.CallNum;
+            LibraryData.LIBDBModels.Media media = new LibraryData.LIBDBModels.Media();
+            media.Title = model.Title;
+            media.Author = model.Author;
+            media.MediaId = model.Id;
+            media.MediaType = model.Type;
+            media.CallNum = model.CallNum;
+            media.DateAdded = DateTime.Now;
+            media.Genre = model.Genre;
+            media.CopiesLeft = model.CopiesLeft;
+            media.MaxCopies = model.CopiesLeft;
+            media.Isbn = model.Isbn;
+            _assets.Add(media);
+
             return View();
         }
-            //add search field
-            /*
-            public async Task<IActionResult> Index(string searchString)
-            {
-                using (LibraryMSContext mediaContext = new LibraryMSContext(options)) {
-                    var media = from m in mediaContext.Media
-                                select m;
-                }
-
-                if (!String.IsNullOrEmpty(searchString))
-                {
-                    media = media.Where(s => s.Title.Contains(searchString));
-                }
-
-                return View(await media.ToListAsync());
-            }
-            */
-        }
+    }
 }
