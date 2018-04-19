@@ -41,6 +41,7 @@ namespace LibraryMS.Controllers
             return View(model);
 
         }
+<<<<<<< HEAD
 
 
         public IActionResult AddMedia()
@@ -48,4 +49,6 @@ namespace LibraryMS.Controllers
             return View();
         }
     }
+=======
+>>>>>>> 3605b2987b700687bc0261da6bf3977c53189536
 }
