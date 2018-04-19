@@ -163,7 +163,7 @@ namespace LibraryMS.LIBDBModels
 
                 entity.HasOne(d => d.Media)
                     .WithMany(p => p.Borrow)
-                    .HasForeignKey(d => d.MediaId)
+                    .HasForeignKey(d => d.MediaType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Media_ID");
             });
@@ -430,7 +430,7 @@ namespace LibraryMS.LIBDBModels
 
                 entity.HasOne(d => d.MediaNavigation)
                     .WithOne(p => p.Media)
-                    .HasForeignKey<Media>(d => d.MediaId)
+                    .HasForeignKey<Media>(d => d.MediaType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Type_of_Media");
             });
