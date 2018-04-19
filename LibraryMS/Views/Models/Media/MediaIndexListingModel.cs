@@ -14,5 +14,6 @@ namespace LibraryMS.Models.Media
         public int Type { get; set; }
         public string CallNum { get; set; }
         public int CopiesLeft { get; set; }
+        public int Isbn { get; internal set; }
     }
 }

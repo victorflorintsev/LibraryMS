@@ -45,11 +45,19 @@ namespace LibraryMS.Controllers
         [HttpPost]
         public IActionResult AddMedia(MediaIndexListingModel model)
         {
-            string title = model.Title;
-            string author = model.Author;
-            int id = model.Id;
-            int mediaType = model.Type;
-            string callnum = model.CallNum;
+            LibraryData.LIBDBModels.Media media = new LibraryData.LIBDBModels.Media();
+            media.Title = model.Title;
+            media.Author = model.Author;
+            media.MediaId = model.Id;
+            media.MediaType = model.Type;
+            media.CallNum = model.CallNum;
+            media.DateAdded = DateTime.Now;
+            media.Genre = model.Genre;
+            media.CopiesLeft = model.CopiesLeft;
+            media.MaxCopies = model.CopiesLeft;
+            media.Isbn = model.Isbn;
+            _assets.Add(media);
+            
             return View();
         }
             //add search field
