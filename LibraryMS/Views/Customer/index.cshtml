@@ -1,0 +1,26 @@
+﻿@model LibraryMS.Models.Customer.CustomerIndexModel
+
+<div id="assets">
+    <h3>Customer Index</h3>
+    <div id="CustomerTable">
+        <table class="table table-condensed" id="CustomerIndexTable">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var asset in Model.Assets)
+                {
+                <tr class="assetRow">
+
+                    <td class="">@asset.first_name</td>
+                    <td class="">@asset.last_name</td>
+                </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

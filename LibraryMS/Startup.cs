@@ -44,6 +44,12 @@ namespace LibraryMS
             services.AddDbContext<LibraryMSContext>(options => 
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddMvc();
+            services.AddSingleton(Configuration);
+            services.AddScoped<ICustomer, CustomerServices>();
+            services.AddDbContext<LibraryMSContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
