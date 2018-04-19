@@ -16,8 +16,27 @@ namespace LibraryMS.Controllers
         {
             _assets = assets;
         }
-        public IActionResult Index()
+        public IActionResult Index(string search = null)
         {
+            if (!string.IsNullOrEmpty(search))
+            {
+                var foundMedia = _assets.SearchMedia(search);
+                var foundListing = foundMedia.Select(r => new MediaIndexListingModel
+                {
+                    Id = r.MediaId,
+                    Author = _assets.getAuthorOrDirector(r.MediaId),
+                    Genre = _assets.getGenre(r.MediaId),
+                    CallNum = _assets.getCallNum(r.MediaId),
+                    Title = r.Title,
+                    Type = _assets.getMediaType(r.MediaId)
+                });
+
+                var model1 = new MediaIndexModel()
+                {
+                    Assets = foundListing
+                };
+                return View(model1);
+            }
             var assetModels = _assets.getAll();
             var listingResult = assetModels.Select(result => new MediaIndexListingModel
             {

@@ -20,6 +20,8 @@ namespace LibraryData
         DateTime getDateAdded(int id);
         int getCopiesLeft(int id);
         int getMaxCopies(int id);
+        List<Media> SearchMedia(string search);
+
 
 
         //1->LibraryData Interface

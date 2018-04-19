@@ -86,5 +86,11 @@ namespace LibraryServices
         {
             return _context.Media.FirstOrDefault(a => a.MediaId == id).Title;
         }
+
+        public List<Media> SearchMedia(string search)
+        {
+            return _context.Media
+                .Where(m => m.Title.Contains(search) || m.Author.Contains(search)).ToList();
+        }
     }
 }
