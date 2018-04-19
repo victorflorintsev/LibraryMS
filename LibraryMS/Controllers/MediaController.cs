@@ -5,12 +5,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using LibraryData;
 using LibraryMS.Models.Media;
+using Microsoft.EntityFrameworkCore;
+using LibraryData.LIBDBModels;
 
 namespace LibraryMS.Controllers
 {
     public class MediaController : Controller
     {
-        
+
         private IMedia _assets;
         public MediaController(IMedia assets)
         {
@@ -18,6 +20,7 @@ namespace LibraryMS.Controllers
         }
         public IActionResult Index()
         {
+
             var assetModels = _assets.getAll();
             var listingResult = assetModels.Select(result => new MediaIndexListingModel
             {
@@ -27,31 +30,22 @@ namespace LibraryMS.Controllers
                 CallNum = _assets.getCallNum(result.MediaId),
                 Title = result.Title,
                 Type = _assets.getMediaType(result.MediaId)
-               
+
             });
 
             var model = new MediaIndexModel()
             {
                 Assets = listingResult
             };
+
             return View(model);
+
         }
-        //add search field
-        /*
-        public async Task<IActionResult> Index(string searchString)
+
+
+        public IActionResult AddMedia()
         {
-            using (LibraryMSContext mediaContext = new LibraryMSContext(options)) {
-                var media = from m in mediaContext.Media
-                            select m;
-            }
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                media = media.Where(s => s.Title.Contains(searchString));
-            }
-
-            return View(await media.ToListAsync());
+            return View();
         }
-        */
     }
 }

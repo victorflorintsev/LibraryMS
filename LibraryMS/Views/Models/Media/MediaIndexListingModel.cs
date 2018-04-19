@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace LibraryMS.Models.Media
 {
-    public class MediaIndexListingModel
+    public class MediaIndexListingModel 
     {
         public int Id { get; set; } //media ID
         public string Title { get; set; }
