@@ -13,9 +13,12 @@ using Microsoft.Extensions.Options;
 using LibraryMS.Models;
 using LibraryMS.Models.AccountViewModels;
 using LibraryMS.Services;
+using LibraryServices;
+using LibraryData;
 
 namespace LibraryMS.Controllers
 {
+
     [Authorize]
     [Route("[controller]/[action]")]
     public class AccountController : Controller
@@ -24,17 +27,20 @@ namespace LibraryMS.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
+        private readonly LibraryMSContext _context;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            ILogger<AccountController> logger)
+            ILogger<AccountController> logger,
+            LibraryMSContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
+            _context = context;
         }
 
         [TempData]
@@ -212,6 +218,8 @@ namespace LibraryMS.Controllers
             return View();
         }
 
+
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -224,6 +232,7 @@ namespace LibraryMS.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    
                     _logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
