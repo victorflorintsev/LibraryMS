@@ -19,8 +19,14 @@ namespace LibraryMS
             _context.SaveChanges();
         }
 
-
-
+        public List<Users> GetAll()
+        {
+            List<Users> outList = new List<Users>();
+            foreach (Users u in _context.Users) {
+                outList.Add(u);
+            }
+            return outList;
+        }
     }
 }
 

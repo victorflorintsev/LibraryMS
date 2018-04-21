@@ -10,12 +10,17 @@ namespace LibraryMS.Controllers
 {
     public class UsersController : Controller
     {
-        private cosc3380Context _context;
         // GET: /<controller>/
+        private readonly IUsers _context;
+        public UsersController(IUsers context)
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
-
-            return View();
+            List<Users> test = _context.GetAll();
+            return View(test);
         }
     }
 }

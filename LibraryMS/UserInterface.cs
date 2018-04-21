@@ -7,5 +7,6 @@ namespace LibraryMS
     public interface IUsers
     {
         void Add(Users newUser);
+        List<Users> GetAll();
     }
 }

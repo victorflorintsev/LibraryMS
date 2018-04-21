@@ -7,7 +7,7 @@ namespace LibraryData
 {
     public class LibraryMSContext : DbContext
     {
-        public LibraryMSContext(DbContextOptions options) : base(options) { }
+        public LibraryMSContext(DbContextOptions<LibraryMSContext> options) : base(options) { }
 
         public DbSet<Customer> Customer { get; set; }
         public DbSet<CustomerType> CustomerType { get; set; }

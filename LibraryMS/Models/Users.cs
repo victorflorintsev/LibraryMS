@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace LibraryMS
 {
@@ -20,6 +21,8 @@ namespace LibraryMS
         public string AddressStreet { get; set; }
         public string AddressCity { get; set; }
         public string AddressZipcode { get; set; }
+
+        [DisplayFormat(NullDisplayText = "", ApplyFormatInEditMode = true)]
         public decimal PhoneNumber { get; set; }
         public string AddressState { get; set; }
         public DateTime? Birthday { get; set; }
