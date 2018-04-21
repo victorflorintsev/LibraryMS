@@ -36,4 +36,9 @@
     <ProjectReference Include="..\LibraryServices\LibraryServices.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Models\Users_\" />
+    <Folder Include="Views\Models\NewFolder\" />
+  </ItemGroup>
+
 </Project>

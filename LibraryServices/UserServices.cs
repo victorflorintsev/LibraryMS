@@ -15,9 +15,9 @@ namespace LibraryServices
             _context = context;
         }
 
-        public void Add(Users newUser)
+        public void Add(Users usertodb)
         {
-            _context.Add(newUser);
+            _context.Add(usertodb);
             _context.SaveChanges();
         }
 

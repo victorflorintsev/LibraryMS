@@ -16,6 +16,7 @@ using LibraryMS.Services;
 using LibraryServices;
 using LibraryData;
 using LibraryMS.LIBDBModels;
+using LibraryData.LIBDBModels;
 
 namespace LibraryMS.Controllers
 {
@@ -256,7 +257,6 @@ namespace LibraryMS.Controllers
 
                     _context.Add(usertodb);
 
-                    await _context.SaveChangesAsync();
 
                     // after saving changes to LIBDB
 

@@ -1,14 +1,13 @@
-﻿using System;
+﻿using LibraryData;
+using System;
+using LibraryData.LIBDBModels;
+using LibraryServices;
 using System.Collections.Generic;
 
-namespace LibraryMS
+namespace LibraryData.LIBDBModels
 {
-    public class Users : IUsers
+    public class Users
     {
-        public Users()
-        {
-            Customer = new HashSet<Customer>();
-        }
 
         public string PasswordHash { get; set; }
         public int? AccessFailedCount { get; set; }
@@ -24,7 +23,9 @@ namespace LibraryMS
         public string AddressState { get; set; }
         public DateTime? Birthday { get; set; }
         public DateTime? MembershipDate { get; set; }
+        
 
         public ICollection<Customer> Customer { get; set; }
+
     }
 }

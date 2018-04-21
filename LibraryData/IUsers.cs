@@ -7,11 +7,11 @@ using System.Collections.Generic;
 
 
 
-namespace LibraryServices
+namespace LibraryData.LIBDBModels
 {
     public interface IUsers
-    {
-        //IEnumerable<Users> getAll();
-        void Add(Users newMedia);
+    { 
+        void Add(Users usertodb);
+       
     }
 }

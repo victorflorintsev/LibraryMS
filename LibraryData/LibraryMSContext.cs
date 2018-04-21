@@ -269,12 +269,12 @@ namespace LibraryData
 
             modelBuilder.Entity<Users>(entity =>
             {
-                entity.HasKey(e => e.UsernameId);
+                entity.HasKey(e => e.UserName);
 
                 entity.ToTable("USERS", "LIBDB");
 
-                entity.Property(e => e.UsernameId)
-                    .HasColumnName("Username_ID")
+                entity.Property(e => e.UserName)
+                    .HasColumnName("UserName")
                     .ValueGeneratedNever();
 
                 entity.Property(e => e.FailedAttempts).HasColumnName("Failed_Attempts");
