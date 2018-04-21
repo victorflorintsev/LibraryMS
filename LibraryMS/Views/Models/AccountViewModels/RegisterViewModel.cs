@@ -46,7 +46,7 @@ namespace LibraryMS.Models.AccountViewModels
 
         [Required]
         [Display(Name = "Address")]
-        public string Address1 { get; set; }
+        public string Address { get; set; }
 
         [Required]
         [Display(Name = "City")]

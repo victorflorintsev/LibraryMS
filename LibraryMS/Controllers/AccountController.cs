@@ -15,6 +15,7 @@ using LibraryMS.Models.AccountViewModels;
 using LibraryMS.Services;
 using LibraryServices;
 using LibraryData;
+using LibraryMS.LIBDBModels;
 
 namespace LibraryMS.Controllers
 {
@@ -232,7 +233,9 @@ namespace LibraryMS.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    
+                    Users usertodb = new Users();
+                    usertodb. =  model.Address;
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
