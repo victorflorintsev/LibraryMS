@@ -61,6 +61,7 @@ namespace LibraryMS.Models.AccountViewModels
         [Display(Name = "Zipcode")]
         public string AddressZipcode { get; set; }
 
+        public Users users { get; set; }
     }
     
 }

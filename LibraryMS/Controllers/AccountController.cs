@@ -233,8 +233,30 @@ namespace LibraryMS.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    Users usertodb = new Users();
-                    usertodb. =  model.Address;
+                    Users usertodb = new Users
+                    {
+                        AddressStreet = model.Address,
+                        AddressCity = model.AddressCity,
+                        AddressState = model.AddressState,
+                        AddressZipcode = model.AddressZipcode,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        Birthday = Convert.ToDateTime(model.BirthDate),
+                        PhoneNumber = Decimal.Parse(model.PhoneNumber),
+                        UserName = model.Email,
+                        LastLoginAttempt = DateTime.Today,
+                        MembershipDate = DateTime.Today
+                };
+                    
+
+
+                    // LIBDB Object...
+
+                    _context.Add(usertodb);
+
+                    await _context.SaveChangesAsync();
+
+                    // after saving changes to LIBDB
 
                     _logger.LogInformation("User created a new account with password.");
 
