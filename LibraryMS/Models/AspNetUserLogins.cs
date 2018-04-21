@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace LibraryMS
-{
+namespace LibraryMS { 
+
     public partial class AspNetUserLogins
     {
         public string LoginProvider { get; set; }

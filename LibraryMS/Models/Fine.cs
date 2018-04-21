@@ -5,12 +5,12 @@ namespace LibraryMS
 {
     public partial class Fine
     {
-        public int CustomerId { get; set; }
+        public string UserName { get; set; }
         public bool? HasPaid { get; set; }
         public decimal Amount { get; set; }
         public DateTime DueDate { get; set; }
         public int PkId { get; set; }
 
-        public Customer Customer { get; set; }
+        public Users UserNameNavigation { get; set; }
     }
 }

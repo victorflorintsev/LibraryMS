@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace LibraryMS
 {
-    public class Users
+    public partial class Users
     {
         public Users()
         {
-            Customer = new HashSet<Customer>();
+            Borrow = new HashSet<Borrow>();
+            Employee = new HashSet<Employee>();
+            Fine = new HashSet<Fine>();
+            IsWaitlistedBy = new HashSet<IsWaitlistedBy>();
         }
 
         public string PasswordHash { get; set; }
@@ -21,13 +23,15 @@ namespace LibraryMS
         public string AddressStreet { get; set; }
         public string AddressCity { get; set; }
         public string AddressZipcode { get; set; }
-
-        [DisplayFormat(NullDisplayText = "", ApplyFormatInEditMode = true)]
-        public decimal PhoneNumber { get; set; }
+        public decimal? PhoneNumber { get; set; }
         public string AddressState { get; set; }
         public DateTime? Birthday { get; set; }
         public DateTime? MembershipDate { get; set; }
 
-        public ICollection<Customer> Customer { get; set; }
+        public UserType UserTypeNavigation { get; set; }
+        public ICollection<Borrow> Borrow { get; set; }
+        public ICollection<Employee> Employee { get; set; }
+        public ICollection<Fine> Fine { get; set; }
+        public ICollection<IsWaitlistedBy> IsWaitlistedBy { get; set; }
     }
 }
