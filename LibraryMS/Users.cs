@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace LibraryMS
 {
-    public partial class Users
+    public class Users : IUsers
     {
         public Users()
         {

@@ -46,6 +46,12 @@ namespace LibraryMS
 
             services.AddMvc();
             services.AddSingleton(Configuration);
+            services.AddScoped<IUsers, UserServices>();
+            services.AddDbContext<LibraryMSContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddMvc();
+            services.AddSingleton(Configuration);
             services.AddScoped<ICustomer, CustomerServices>();
             services.AddDbContext<LibraryMSContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

@@ -21,10 +21,8 @@ namespace LibraryServices
             _context.SaveChanges();
         }
 
-        public IEnumerable<Users> getAll()
-        {
-            return _context.Users;
-        }
+
+
     }
 }
 

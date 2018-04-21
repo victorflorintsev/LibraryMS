@@ -28,14 +28,16 @@ namespace LibraryMS.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
-        private readonly LibraryMSContext _context;
+        private readonly IUsers _context;
+
+    
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
             ILogger<AccountController> logger,
-            LibraryMSContext context)
+            IUsers context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
