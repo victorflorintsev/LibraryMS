@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using LibraryData.LIBDBModels;
 using System.Text;
 
-namespace LibraryData
+namespace LibraryMS
 {
     public interface ICustomer
     {

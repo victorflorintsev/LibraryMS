@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 
 
-namespace LibraryMS.Models.Customer
+namespace LibraryMS
 {
     public class CustomerIndexModel
     {
-        public IEnumerable<CustomerIndexListingModel> Assets { get; set; }
+        public IEnumerable<Customer> Assets { get; set; }
     }
 }
