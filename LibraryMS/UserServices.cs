@@ -29,7 +29,11 @@ namespace LibraryMS
             
             //return outList;
             List<Users> outList = new List<Users>();
-            outList.Add(_context.Users.First());
+            //outList.Add(_context.Users.First());
+            foreach (Users u in _context.Users)
+            {
+                outList.Add(u);
+            }
             return outList;
         }
     }
