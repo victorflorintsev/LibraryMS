@@ -34,20 +34,31 @@ namespace LibraryMS.Models.AccountViewModels
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
+        [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Birthday")]
         public string BirthDate { get; set; }
 
+        [StringLength(10, ErrorMessage = "Phone number should be 10 digits", MinimumLength = 10 )]
         [DataType(DataType.PhoneNumber)]
+        [Display(Name = "Phone number")]
         public string PhoneNumber { get; set; }
 
+        [Required]
+        [Display(Name = "Address")]
         public string Address1 { get; set; }
-        
+
+        [Required]
+        [Display(Name = "City")]
         public string AddressCity { get; set; }
 
+        [Required]
+        [Display(Name = "State")]
         public string AddressState { get; set; }
 
+        [Required]
         [DataType(DataType.PostalCode)]
+        [Display(Name = "Zipcode")]
         public string AddressZipcode { get; set; }
 
     }
