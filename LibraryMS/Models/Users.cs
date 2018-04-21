@@ -24,6 +24,7 @@ namespace LibraryMS
 
         [DisplayFormat(NullDisplayText = "", ApplyFormatInEditMode = true)]
         public decimal PhoneNumber { get; set; }
+
         public string AddressState { get; set; }
         public DateTime? Birthday { get; set; }
         public DateTime? MembershipDate { get; set; }
