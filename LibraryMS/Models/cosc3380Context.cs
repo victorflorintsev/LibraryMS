@@ -6,8 +6,7 @@ namespace LibraryMS
 {
     public partial class cosc3380Context : DbContext
     {
-        public cosc3380Context(DbContextOptions<cosc3380Context> options) : base(options) { }
-
+        public cosc3380Context(DbContextOptions<cosc3380Context> options) : base(options){ }
         public virtual DbSet<AspNetRoleClaims> AspNetRoleClaims { get; set; }
         public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
@@ -16,25 +15,14 @@ namespace LibraryMS
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
         public virtual DbSet<Borrow> Borrow { get; set; }
-        public virtual DbSet<BranchHours> BranchHours { get; set; }
-        public virtual DbSet<CheckoutHistories> CheckoutHistories { get; set; }
-        public virtual DbSet<Checkouts> Checkouts { get; set; }
-        public virtual DbSet<Customer> Customer { get; set; }
-        public virtual DbSet<CustomerType> CustomerType { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<Fine> Fine { get; set; }
-        public virtual DbSet<Holds> Holds { get; set; }
         public virtual DbSet<IsWaitlistedBy> IsWaitlistedBy { get; set; }
-        public virtual DbSet<LibraryAssets> LibraryAssets { get; set; }
-        public virtual DbSet<LibraryBranches> LibraryBranches { get; set; }
-        public virtual DbSet<LibraryCards> LibraryCards { get; set; }
         public virtual DbSet<Located> Located { get; set; }
         public virtual DbSet<Manages> Manages { get; set; }
         public virtual DbSet<Media> Media { get; set; }
         public virtual DbSet<MediaType> MediaType { get; set; }
-        public virtual DbSet<Patrons> Patrons { get; set; }
         public virtual DbSet<Section> Section { get; set; }
-        public virtual DbSet<Statuses> Statuses { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<UserType> UserType { get; set; }
 
@@ -146,11 +134,7 @@ namespace LibraryMS
 
                 entity.ToTable("BORROW", "LIBDB");
 
-                entity.Property(e => e.PkId)
-                    .HasColumnName("pk_id")
-                    .ValueGeneratedNever();
-
-                entity.Property(e => e.CustomerId).HasColumnName("Customer_ID");
+                entity.Property(e => e.PkId).HasColumnName("pk_id");
 
                 entity.Property(e => e.DueDate)
                     .HasColumnName("Due_Date")
@@ -166,180 +150,38 @@ namespace LibraryMS
                     .HasColumnName("Return_Date")
                     .HasColumnType("date");
 
-                entity.HasOne(d => d.Customer)
-                    .WithMany(p => p.Borrow)
-                    .HasForeignKey(d => d.CustomerId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("Customer_ID");
+                entity.Property(e => e.UserName)
+                    .IsRequired()
+                    .HasMaxLength(256);
 
                 entity.HasOne(d => d.Media)
                     .WithMany(p => p.Borrow)
                     .HasForeignKey(d => d.MediaId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Media_ID");
-            });
 
-            modelBuilder.Entity<BranchHours>(entity =>
-            {
-                entity.HasIndex(e => e.BranchId);
-
-                entity.HasOne(d => d.Branch)
-                    .WithMany(p => p.BranchHours)
-                    .HasForeignKey(d => d.BranchId);
-            });
-
-            modelBuilder.Entity<CheckoutHistories>(entity =>
-            {
-                entity.HasIndex(e => e.LibraryAssetId);
-
-                entity.HasIndex(e => e.LibraryCardId);
-
-                entity.HasOne(d => d.LibraryAsset)
-                    .WithMany(p => p.CheckoutHistories)
-                    .HasForeignKey(d => d.LibraryAssetId);
-
-                entity.HasOne(d => d.LibraryCard)
-                    .WithMany(p => p.CheckoutHistories)
-                    .HasForeignKey(d => d.LibraryCardId);
-            });
-
-            modelBuilder.Entity<Checkouts>(entity =>
-            {
-                entity.HasIndex(e => e.LibraryAssetId);
-
-                entity.HasIndex(e => e.LibraryCardId);
-
-                entity.HasOne(d => d.LibraryAsset)
-                    .WithMany(p => p.Checkouts)
-                    .HasForeignKey(d => d.LibraryAssetId);
-
-                entity.HasOne(d => d.LibraryCard)
-                    .WithMany(p => p.Checkouts)
-                    .HasForeignKey(d => d.LibraryCardId);
-            });
-
-            modelBuilder.Entity<Customer>(entity =>
-            {
-                entity.ToTable("CUSTOMER", "LIBDB");
-
-                entity.Property(e => e.CustomerId).HasColumnName("Customer_ID");
-
-                entity.Property(e => e.AddressCity)
-                    .HasColumnName("Address_City")
-                    .HasMaxLength(20);
-
-                entity.Property(e => e.AddressState)
-                    .HasColumnName("Address_State")
-                    .HasMaxLength(2);
-
-                entity.Property(e => e.AddressStreet)
-                    .HasColumnName("Address_Street")
-                    .HasMaxLength(25);
-
-                entity.Property(e => e.AddressZipcode)
-                    .HasColumnName("Address_Zipcode")
-                    .HasMaxLength(5);
-
-                entity.Property(e => e.BirthDate)
-                    .HasColumnName("Birth_Date")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.CustomerType).HasColumnName("Customer_Type");
-
-                entity.Property(e => e.FirstName)
-                    .IsRequired()
-                    .HasColumnName("First_Name")
-                    .HasMaxLength(20);
-
-                entity.Property(e => e.LastName)
-                    .IsRequired()
-                    .HasColumnName("Last_Name")
-                    .HasMaxLength(20);
-
-                entity.Property(e => e.MembershipIssued)
-                    .HasColumnName("Membership_Issued")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.MiddleInitial)
-                    .IsRequired()
-                    .HasColumnName("Middle_Initial")
-                    .HasMaxLength(1);
-
-                entity.Property(e => e.PhoneNumber)
-                    .HasColumnName("Phone_Number")
-                    .HasColumnType("numeric(10, 0)");
-
-                entity.Property(e => e.Username)
-                    .IsRequired()
-                    .HasMaxLength(256);
-
-                entity.HasOne(d => d.UsernameNavigation)
-                    .WithMany(p => p.Customer)
-                    .HasForeignKey(d => d.Username)
+                entity.HasOne(d => d.UserNameNavigation)
+                    .WithMany(p => p.Borrow)
+                    .HasForeignKey(d => d.UserName)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("Customer_to_Username");
-            });
-
-            modelBuilder.Entity<CustomerType>(entity =>
-            {
-                entity.ToTable("CUSTOMER_TYPE", "LIBDB");
-
-                entity.Property(e => e.CustomerTypeId)
-                    .HasColumnName("CUSTOMER_TYPE_ID")
-                    .ValueGeneratedNever();
-
-                entity.Property(e => e.BookLimit).HasColumnName("BOOK_LIMIT");
-
-                entity.Property(e => e.CustomerTypeName)
-                    .IsRequired()
-                    .HasColumnName("CUSTOMER_TYPE_NAME")
-                    .HasColumnType("nchar(10)");
+                    .HasConstraintName("Borrow_References_Users");
             });
 
             modelBuilder.Entity<Employee>(entity =>
             {
                 entity.ToTable("EMPLOYEE", "LIBDB");
 
-                entity.Property(e => e.EmployeeId)
-                    .HasColumnName("Employee_ID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.EmployeeId).HasColumnName("Employee_ID");
 
-                entity.Property(e => e.AddressCity)
+                entity.Property(e => e.UserName)
                     .IsRequired()
-                    .HasColumnName("Address_City")
-                    .HasColumnType("nchar(20)");
+                    .HasMaxLength(256);
 
-                entity.Property(e => e.AddressState)
-                    .IsRequired()
-                    .HasColumnName("Address_State")
-                    .HasColumnType("nchar(25)");
-
-                entity.Property(e => e.AddressStreet)
-                    .IsRequired()
-                    .HasColumnName("Address_Street")
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.AddressZipcode)
-                    .IsRequired()
-                    .HasColumnName("Address_Zipcode")
-                    .HasColumnType("nchar(20)");
-
-                entity.Property(e => e.FirstName)
-                    .IsRequired()
-                    .HasColumnName("First_Name")
-                    .HasMaxLength(15)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.LastName)
-                    .IsRequired()
-                    .HasColumnName("Last_Name")
-                    .HasMaxLength(15)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.PhoneNumber)
-                    .HasColumnName("Phone_Number")
-                    .HasColumnType("numeric(10, 0)");
+                entity.HasOne(d => d.UserNameNavigation)
+                    .WithMany(p => p.Employee)
+                    .HasForeignKey(d => d.UserName)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_EMPLOYEE_USERNAME");
             });
 
             modelBuilder.Entity<Fine>(entity =>
@@ -348,13 +190,9 @@ namespace LibraryMS
 
                 entity.ToTable("FINE", "LIBDB");
 
-                entity.Property(e => e.PkId)
-                    .HasColumnName("pk_id")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.PkId).HasColumnName("pk_id");
 
                 entity.Property(e => e.Amount).HasColumnType("money");
-
-                entity.Property(e => e.CustomerId).HasColumnName("Customer_ID");
 
                 entity.Property(e => e.DueDate)
                     .HasColumnName("Due_Date")
@@ -362,26 +200,15 @@ namespace LibraryMS
 
                 entity.Property(e => e.HasPaid).HasColumnName("Has_Paid");
 
-                entity.HasOne(d => d.Customer)
+                entity.Property(e => e.UserName)
+                    .IsRequired()
+                    .HasMaxLength(256);
+
+                entity.HasOne(d => d.UserNameNavigation)
                     .WithMany(p => p.Fine)
-                    .HasForeignKey(d => d.CustomerId)
+                    .HasForeignKey(d => d.UserName)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("Customer_to_Fine");
-            });
-
-            modelBuilder.Entity<Holds>(entity =>
-            {
-                entity.HasIndex(e => e.LibraryAssetId);
-
-                entity.HasIndex(e => e.LibraryCardId);
-
-                entity.HasOne(d => d.LibraryAsset)
-                    .WithMany(p => p.Holds)
-                    .HasForeignKey(d => d.LibraryAssetId);
-
-                entity.HasOne(d => d.LibraryCard)
-                    .WithMany(p => p.Holds)
-                    .HasForeignKey(d => d.LibraryCardId);
+                    .HasConstraintName("Fine_References_Users");
             });
 
             modelBuilder.Entity<IsWaitlistedBy>(entity =>
@@ -390,11 +217,7 @@ namespace LibraryMS
 
                 entity.ToTable("IS_WAITLISTED_BY", "LIBDB");
 
-                entity.Property(e => e.PkId)
-                    .HasColumnName("pk_id")
-                    .ValueGeneratedNever();
-
-                entity.Property(e => e.CustomerId).HasColumnName("Customer_ID");
+                entity.Property(e => e.PkId).HasColumnName("pk_id");
 
                 entity.Property(e => e.ExpirationDate)
                     .HasColumnName("Expiration_Date")
@@ -404,49 +227,21 @@ namespace LibraryMS
 
                 entity.Property(e => e.PositionNum).HasColumnName("position_num");
 
-                entity.HasOne(d => d.Customer)
-                    .WithMany(p => p.IsWaitlistedBy)
-                    .HasForeignKey(d => d.CustomerId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("Customer_ID_");
+                entity.Property(e => e.UserName)
+                    .IsRequired()
+                    .HasMaxLength(256);
 
                 entity.HasOne(d => d.Media)
                     .WithMany(p => p.IsWaitlistedBy)
                     .HasForeignKey(d => d.MediaId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Media_ID_");
-            });
 
-            modelBuilder.Entity<LibraryAssets>(entity =>
-            {
-                entity.HasIndex(e => e.LocationId);
-
-                entity.HasIndex(e => e.StatusId);
-
-                entity.Property(e => e.Discriminator).IsRequired();
-
-                entity.Property(e => e.Isbn).HasColumnName("ISBN");
-
-                entity.Property(e => e.Title).IsRequired();
-
-                entity.HasOne(d => d.Location)
-                    .WithMany(p => p.LibraryAssets)
-                    .HasForeignKey(d => d.LocationId);
-
-                entity.HasOne(d => d.Status)
-                    .WithMany(p => p.LibraryAssets)
-                    .HasForeignKey(d => d.StatusId);
-            });
-
-            modelBuilder.Entity<LibraryBranches>(entity =>
-            {
-                entity.Property(e => e.Address).IsRequired();
-
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(30);
-
-                entity.Property(e => e.Telephone).IsRequired();
+                entity.HasOne(d => d.UserNameNavigation)
+                    .WithMany(p => p.IsWaitlistedBy)
+                    .HasForeignKey(d => d.UserName)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("Hold_References_Users");
             });
 
             modelBuilder.Entity<Located>(entity =>
@@ -568,31 +363,6 @@ namespace LibraryMS
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<Patrons>(entity =>
-            {
-                entity.HasIndex(e => e.HomeLibraryBranchId);
-
-                entity.HasIndex(e => e.LibraryCardId);
-
-                entity.Property(e => e.Address).IsRequired();
-
-                entity.Property(e => e.FirstName)
-                    .IsRequired()
-                    .HasMaxLength(30);
-
-                entity.Property(e => e.LastName)
-                    .IsRequired()
-                    .HasMaxLength(30);
-
-                entity.HasOne(d => d.HomeLibraryBranch)
-                    .WithMany(p => p.Patrons)
-                    .HasForeignKey(d => d.HomeLibraryBranchId);
-
-                entity.HasOne(d => d.LibraryCard)
-                    .WithMany(p => p.Patrons)
-                    .HasForeignKey(d => d.LibraryCardId);
-            });
-
             modelBuilder.Entity<Section>(entity =>
             {
                 entity.ToTable("SECTION", "LIBDB");
@@ -620,13 +390,6 @@ namespace LibraryMS
                     .IsRequired()
                     .HasColumnName("Start_call_num")
                     .HasColumnType("nchar(10)");
-            });
-
-            modelBuilder.Entity<Statuses>(entity =>
-            {
-                entity.Property(e => e.Description).IsRequired();
-
-                entity.Property(e => e.Name).IsRequired();
             });
 
             modelBuilder.Entity<Users>(entity =>
@@ -688,6 +451,12 @@ namespace LibraryMS
                 entity.Property(e => e.UserType)
                     .HasColumnName("User_Type")
                     .HasDefaultValueSql("((1))");
+
+                entity.HasOne(d => d.UserTypeNavigation)
+                    .WithMany(p => p.Users)
+                    .HasForeignKey(d => d.UserType)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("Users_References_UserType");
             });
 
             modelBuilder.Entity<UserType>(entity =>
@@ -695,6 +464,8 @@ namespace LibraryMS
                 entity.ToTable("USER_TYPE", "LIBDB");
 
                 entity.Property(e => e.UserTypeId).HasColumnName("User_Type_Id");
+
+                entity.Property(e => e.UserTypeLimit).HasColumnName("User_Type_Limit");
 
                 entity.Property(e => e.UserTypeString)
                     .IsRequired()

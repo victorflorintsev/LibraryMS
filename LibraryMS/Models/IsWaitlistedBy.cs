@@ -7,11 +7,11 @@ namespace LibraryMS
     {
         public int PositionNum { get; set; }
         public DateTime ExpirationDate { get; set; }
-        public int CustomerId { get; set; }
+        public string UserName { get; set; }
         public int MediaId { get; set; }
         public int PkId { get; set; }
 
-        public Customer Customer { get; set; }
         public Media Media { get; set; }
+        public Users UserNameNavigation { get; set; }
     }
 }
