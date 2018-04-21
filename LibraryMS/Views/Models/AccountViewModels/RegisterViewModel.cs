@@ -9,6 +9,16 @@ namespace LibraryMS.Models.AccountViewModels
     public class RegisterViewModel
     {
         [Required]
+        [StringLength(50)]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -23,6 +33,23 @@ namespace LibraryMS.Models.AccountViewModels
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [DataType(DataType.Date)]
+        [Display(Name = "Birthday")]
+        public string BirthDate { get; set; }
+
+        [DataType(DataType.PhoneNumber)]
+        public string PhoneNumber { get; set; }
+
+        public string Address1 { get; set; }
+        
+        public string AddressCity { get; set; }
+
+        public string AddressState { get; set; }
+
+        [DataType(DataType.PostalCode)]
+        public string AddressZipcode { get; set; }
+
     }
     
 }
