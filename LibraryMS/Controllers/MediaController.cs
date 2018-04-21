@@ -46,7 +46,6 @@ namespace LibraryMS.Controllers
                 CallNum = _assets.getCallNum(result.MediaId),
                 Title = result.Title,
                 Type = _assets.getMediaType(result.MediaId)
-
             });
 
             var model = new MediaIndexModel()
@@ -55,6 +54,13 @@ namespace LibraryMS.Controllers
             };
             return View(model);
         }
+
+        public IActionResult Checkout()
+        {
+            return View();
+        }
+
+
         public IActionResult AddMedia()
         {
             return View();
