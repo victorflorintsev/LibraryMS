@@ -65,9 +65,11 @@ namespace LibraryMS.Controllers
         public IActionResult AddMedia(MediaIndexListingModel model)
         {
             LibraryData.LIBDBModels.Media media = new LibraryData.LIBDBModels.Media();
+
             media.Title = model.Title;
             media.Author = model.Author;
             media.MediaId = model.Id;
+
             LibraryData.LIBDBModels.MediaType type = new LibraryData.LIBDBModels.MediaType();
             type.MediaTypeId = 0;
             type.MediaTypeName = "Books";

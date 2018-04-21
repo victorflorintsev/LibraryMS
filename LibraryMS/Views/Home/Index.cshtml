@@ -1,4 +1,11 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@using LibraryMS.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -13,12 +20,23 @@
         <div class="item active">
             <img src="~/images/librarybanner1.jpg" alt="ASP.NET" class="img-responsive" />
             <div class="carousel-caption" role="option">
-                <p>
-                    Become a member today!
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
+                @if (!SignInManager.IsSignedIn(User))
+                {<p>
+                    Why aren't you a member, PLEB'
+    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
+        Learn More
+    </a>
+            </p>
+                }
+                else
+                {
+            <p>
+                Thanks for being a member of our library
+                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
+                    Learn More
+                </a>
+            </p>
+                }
             </div>
         </div>
         <div class="item">

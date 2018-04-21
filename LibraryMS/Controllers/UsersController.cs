@@ -22,5 +22,10 @@ namespace LibraryMS.Controllers
             List<Users> test = _context.GetAll();
             return View(test);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }
