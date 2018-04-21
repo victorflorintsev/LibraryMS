@@ -6,6 +6,8 @@ namespace LibraryMS
 {
     public partial class cosc3380Context : DbContext
     {
+        public cosc3380Context(DbContextOptions<cosc3380Context> options) : base(options) { }
+
         public virtual DbSet<AspNetRoleClaims> AspNetRoleClaims { get; set; }
         public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }

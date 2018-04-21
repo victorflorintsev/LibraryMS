@@ -308,13 +308,14 @@ namespace LibraryData.Migrations
                         .HasConstraintName("Type_of_Customer");
                 });
 
-            modelBuilder.Entity("LibraryData.LIBDBModels.Employee", b =>
+            /*modelBuilder.Entity("LibraryData.LIBDBModels.Employee", b =>
                 {
                     b.HasOne("LibraryData.LIBDBModels.Users", "EmployeeNavigation")
                         .WithOne("Employee")
                         .HasForeignKey("LibraryData.LIBDBModels.Employee", "EmployeeId")
                         .HasConstraintName("Users_to_Employee");
                 });
+                */
 
             modelBuilder.Entity("LibraryData.LIBDBModels.Media", b =>
                 {

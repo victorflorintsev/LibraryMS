@@ -16,6 +16,6 @@ namespace LibraryData.LIBDBModels
         public int CopiesLeft { get; set; }
         public int MaxCopies { get; set; }
 
-        public MediaType MediaNavigation { get; set; }
+        public MediaType MediaTypeNavigation { get; set; }
     }
 }

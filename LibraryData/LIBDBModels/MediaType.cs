@@ -9,6 +9,6 @@ namespace LibraryData.LIBDBModels
         public int MediaTypeId { get; set; }
         public string MediaTypeName { get; set; }
 
-        public Media Media { get; set; }
+        public ICollection<Media> Media { get; set; }
     }
 }

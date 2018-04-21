@@ -71,7 +71,7 @@ namespace LibraryMS.Controllers
             LibraryData.LIBDBModels.MediaType type = new LibraryData.LIBDBModels.MediaType();
             type.MediaTypeId = 0;
             type.MediaTypeName = "Books";
-            media.MediaNavigation = type;
+            media.MediaTypeNavigation = type;
             media.MediaType = _assets.getMediaType(0);
             media.CallNum = model.CallNum;
             media.DateAdded = DateTime.Now;

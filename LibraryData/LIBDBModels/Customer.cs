@@ -18,7 +18,9 @@ namespace LibraryData.LIBDBModels
         public string AddressState { get; set; }
         public string AddressZipcode { get; set; }
         public int CustomerType { get; set; }
+        public string Username { get; set; }
 
+        public virtual Users UsernameNavigation { get; set; }
         public virtual Users CustomerNavigation { get; set; }
         public virtual CustomerType CustomerTypeNavigation { get; set; }
     }

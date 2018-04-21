@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using LibraryMS;
 using LibraryMS.Data;
 using LibraryMS.Models;
 using LibraryMS.Services;
@@ -47,7 +49,7 @@ namespace LibraryMS
             services.AddMvc();
             services.AddSingleton(Configuration);
             services.AddScoped<IUsers, UserServices>();
-            services.AddDbContext<LibraryMSContext>(options =>
+            services.AddDbContext<cosc3380Context>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddMvc();
@@ -83,5 +85,5 @@ namespace LibraryMS
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
-    }
+     }
 }

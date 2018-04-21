@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Owin.Security;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -14,8 +15,8 @@ using LibraryMS.Models;
 using LibraryMS.Models.AccountViewModels;
 using LibraryMS.Services;
 using LibraryServices;
-using LibraryData;
-using LibraryMS.LIBDBModels;
+using System.Security.Cryptography;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace LibraryMS.Controllers
 {
@@ -247,7 +248,9 @@ namespace LibraryMS.Controllers
                         PhoneNumber = Decimal.Parse(model.PhoneNumber),
                         UserName = model.Email,
                         LastLoginAttempt = DateTime.Today,
-                        MembershipDate = DateTime.Today
+                        MembershipDate = DateTime.Today,
+                        PasswordHash = ((model.Password).GetHashCode()).ToString()
+                        
                 };
                     
 
@@ -255,8 +258,6 @@ namespace LibraryMS.Controllers
                     // LIBDB Object...
 
                     _context.Add(usertodb);
-
-                    await _context.SaveChangesAsync();
 
                     // after saving changes to LIBDB
 

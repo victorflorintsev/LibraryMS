@@ -14,6 +14,6 @@ namespace LibraryData.LIBDBModels
         public string AddressState { get; set; }
         public string AddressZipcode { get; set; }
 
-        public Users EmployeeNavigation { get; set; }
+        //public Users EmployeeNavigation { get; set; }
     }
 }

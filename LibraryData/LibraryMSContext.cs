@@ -34,33 +34,32 @@ namespace LibraryData
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            
+            
+
+           
+
             modelBuilder.Entity<Customer>(entity =>
             {
                 entity.ToTable("CUSTOMER", "LIBDB");
 
-                entity.Property(e => e.CustomerId)
-                    .HasColumnName("Customer_ID")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.CustomerId).HasColumnName("Customer_ID");
 
                 entity.Property(e => e.AddressCity)
-                    .IsRequired()
                     .HasColumnName("Address_City")
-                    .HasColumnType("nchar(15)");
+                    .HasMaxLength(20);
 
                 entity.Property(e => e.AddressState)
-                    .IsRequired()
                     .HasColumnName("Address_State")
-                    .HasColumnType("nchar(2)");
+                    .HasMaxLength(2);
 
                 entity.Property(e => e.AddressStreet)
-                    .IsRequired()
                     .HasColumnName("Address_Street")
-                    .HasColumnType("nchar(25)");
+                    .HasMaxLength(25);
 
                 entity.Property(e => e.AddressZipcode)
-                    .IsRequired()
                     .HasColumnName("Address_Zipcode")
-                    .HasColumnType("nchar(5)");
+                    .HasMaxLength(5);
 
                 entity.Property(e => e.BirthDate)
                     .HasColumnName("Birth_Date")
@@ -71,14 +70,12 @@ namespace LibraryData
                 entity.Property(e => e.FirstName)
                     .IsRequired()
                     .HasColumnName("First_Name")
-                    .HasMaxLength(15)
-                    .IsUnicode(false);
+                    .HasMaxLength(20);
 
                 entity.Property(e => e.LastName)
                     .IsRequired()
                     .HasColumnName("Last_Name")
-                    .HasMaxLength(15)
-                    .IsUnicode(false);
+                    .HasMaxLength(20);
 
                 entity.Property(e => e.MembershipIssued)
                     .HasColumnName("Membership_Issued")
@@ -87,23 +84,21 @@ namespace LibraryData
                 entity.Property(e => e.MiddleInitial)
                     .IsRequired()
                     .HasColumnName("Middle_Initial")
-                    .HasColumnType("char(1)");
+                    .HasMaxLength(1);
 
                 entity.Property(e => e.PhoneNumber)
                     .HasColumnName("Phone_Number")
                     .HasColumnType("numeric(10, 0)");
 
-               entity.HasOne(d => d.CustomerNavigation)
-                    .WithOne(p => p.Customer)
-                    .HasForeignKey<Customer>(d => d.CustomerId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("Users_to_Customer");
+                entity.Property(e => e.Username)
+                    .IsRequired()
+                    .HasMaxLength(256);
 
-                entity.HasOne(d => d.CustomerTypeNavigation)
+                entity.HasOne(d => d.UsernameNavigation)
                     .WithMany(p => p.Customer)
-                    .HasForeignKey(d => d.CustomerType)
+                    .HasForeignKey(d => d.Username)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("Type_of_Customer");
+                    .HasConstraintName("Customer_to_Username");
             });
 
             modelBuilder.Entity<CustomerType>(entity =>
@@ -122,57 +117,11 @@ namespace LibraryData
                     .HasColumnType("nchar(10)");
             });
 
-            modelBuilder.Entity<Employee>(entity =>
-            {
-                entity.ToTable("EMPLOYEE", "LIBDB");
+          
 
-                entity.Property(e => e.EmployeeId)
-                    .HasColumnName("Employee_ID")
-                    .ValueGeneratedNever();
-
-                entity.Property(e => e.AddressCity)
-                    .IsRequired()
-                    .HasColumnName("Address_City")
-                    .HasColumnType("nchar(20)");
-
-                entity.Property(e => e.AddressState)
-                    .IsRequired()
-                    .HasColumnName("Address_State")
-                    .HasColumnType("nchar(25)");
-
-                entity.Property(e => e.AddressStreet)
-                    .IsRequired()
-                    .HasColumnName("Address_Street")
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.AddressZipcode)
-                    .IsRequired()
-                    .HasColumnName("Address_Zipcode")
-                    .HasColumnType("nchar(20)");
-
-                entity.Property(e => e.FirstName)
-                    .IsRequired()
-                    .HasColumnName("First_Name")
-                    .HasMaxLength(15)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.LastName)
-                    .IsRequired()
-                    .HasColumnName("Last_Name")
-                    .HasMaxLength(15)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.PhoneNumber)
-                    .HasColumnName("Phone_Number")
-                    .HasColumnType("numeric(10, 0)");
-
-                entity.HasOne(d => d.EmployeeNavigation)
-                    .WithOne(p => p.Employee)
-                    .HasForeignKey<Employee>(d => d.EmployeeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("Users_to_Employee");
-            });
+           
+           
+           
 
             modelBuilder.Entity<Media>(entity =>
             {
@@ -182,19 +131,18 @@ namespace LibraryData
                     .HasName("IX_Media")
                     .IsUnique();
 
-                entity.Property(e => e.MediaId)
-                    .HasColumnName("Media_ID")
-                    .ValueGeneratedOnAdd();
+                entity.Property(e => e.MediaId).HasColumnName("Media_ID");
 
                 entity.Property(e => e.Author)
                     .IsRequired()
                     .HasColumnName("author")
-                    .HasColumnType("varchar(50)");
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.CallNum)
                     .IsRequired()
                     .HasColumnName("call_num")
-                    .HasColumnType("varchar(50)");
+                    .HasColumnType("nchar(10)");
 
                 entity.Property(e => e.CopiesLeft).HasColumnName("copies_left");
 
@@ -205,7 +153,8 @@ namespace LibraryData
                 entity.Property(e => e.Genre)
                     .IsRequired()
                     .HasColumnName("genre")
-                    .HasColumnType("varchar(50)");
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.MaxCopies).HasColumnName("max_copies");
 
@@ -214,11 +163,12 @@ namespace LibraryData
                 entity.Property(e => e.Title)
                     .IsRequired()
                     .HasColumnName("title")
-                    .HasColumnType("varchar(50)");
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
-                entity.HasOne(d => d.MediaNavigation)
-                    .WithOne(p => p.Media)
-                    .HasForeignKey<Media>(d => d.MediaId)
+                entity.HasOne(d => d.MediaTypeNavigation)
+                    .WithMany(p => p.Media)
+                    .HasForeignKey(d => d.MediaType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Type_of_Media");
             });
@@ -238,6 +188,7 @@ namespace LibraryData
                     .IsUnicode(false);
             });
 
+            
             modelBuilder.Entity<Section>(entity =>
             {
                 entity.ToTable("SECTION", "LIBDB");
@@ -269,19 +220,38 @@ namespace LibraryData
 
             modelBuilder.Entity<Users>(entity =>
             {
-                entity.HasKey(e => e.UsernameId);
+                entity.HasKey(e => e.UserName);
 
                 entity.ToTable("USERS", "LIBDB");
 
-                entity.Property(e => e.UsernameId)
-                    .HasColumnName("Username_ID")
+                entity.Property(e => e.UserName)
+                    .HasMaxLength(256)
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.FailedAttempts).HasColumnName("Failed_Attempts");
+                entity.Property(e => e.AccessFailedCount).HasDefaultValueSql("((0))");
 
-                entity.Property(e => e.HashedPassword)
-                    .IsRequired()
-                    .HasColumnName("Hashed_Password")
+                entity.Property(e => e.AddressCity)
+                    .HasColumnName("Address_City")
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.AddressState)
+                    .HasColumnName("Address_State")
+                    .HasColumnType("nchar(2)");
+
+                entity.Property(e => e.AddressStreet)
+                    .HasColumnName("Address_Street")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.AddressZipcode)
+                    .HasColumnName("Address_Zipcode")
+                    .HasColumnType("nchar(20)");
+
+                entity.Property(e => e.Birthday).HasColumnType("date");
+
+                entity.Property(e => e.FirstName)
+                    .HasColumnName("First_Name")
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -289,27 +259,31 @@ namespace LibraryData
                     .HasColumnName("Last_Login_Attempt")
                     .HasColumnType("datetime");
 
-                entity.Property(e => e.UserType).HasColumnName("User_Type");
-
-                entity.Property(e => e.UsernameString)
-                    .IsRequired()
-                    .HasColumnName("Username_String")
-                    .HasMaxLength(20)
+                entity.Property(e => e.LastName)
+                    .HasColumnName("Last_Name")
+                    .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.UserTypeNavigation)
-                    .WithMany(p => p.Users)
-                    .HasForeignKey(d => d.UserType)
-                    .HasConstraintName("FK__USERS__User_Type__6442E2C9");
+                entity.Property(e => e.MembershipDate)
+                    .HasColumnName("Membership_Date")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.PasswordHash).IsRequired();
+
+                entity.Property(e => e.PhoneNumber)
+                    .HasColumnName("Phone_Number")
+                    .HasColumnType("numeric(10, 0)");
+
+                entity.Property(e => e.UserType)
+                    .HasColumnName("User_Type")
+                    .HasDefaultValueSql("((1))");
             });
 
             modelBuilder.Entity<UserType>(entity =>
             {
                 entity.ToTable("USER_TYPE", "LIBDB");
 
-                entity.Property(e => e.UserTypeId)
-                    .HasColumnName("User_Type_Id")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.UserTypeId).HasColumnName("User_Type_Id");
 
                 entity.Property(e => e.UserTypeString)
                     .IsRequired()

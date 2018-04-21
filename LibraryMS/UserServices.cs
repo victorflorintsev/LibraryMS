@@ -1,16 +1,14 @@
-﻿using LibraryData;
-using System;
-using LibraryData.LIBDBModels;
+﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
-namespace LibraryServices
+namespace LibraryMS
 {
     public class UserServices : IUsers
     {
-        private LibraryMSContext _context;
-        public UserServices(LibraryMSContext context)
+        private cosc3380Context _context;
+        public UserServices(cosc3380Context context)
         {
             _context = context;
         }
