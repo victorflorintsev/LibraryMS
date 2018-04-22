@@ -15,6 +15,12 @@ namespace LibraryMS.Controllers
             return View();
         }
 
+        public IActionResult Graph()
+        {
+            ViewData["Message"] = "Graph";
+            return View();
+        }
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
