@@ -9,7 +9,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-    <title>Graph</title>
+    
 </head>
 <body>
     <div id="chartContainer"></div>
@@ -18,21 +18,27 @@
 
 		window.onload = function () {
 			var chart = new CanvasJS.Chart("chartContainer", {
-				theme: "theme2",
+				theme: "theme2",plotOptions: {
+              pie: {
+                  showInLegend: true,
+                  animation: false,
+                  allowPointSelect: true,
+                  cursor: 'pointer'
+              }
+          },
+          legend: {
+              enabled: true
+          },
+
 				animationEnabled: true,
 				title: {
-					text: "Simple Column Chart in ASP.NET MVC"
+					text:"User Types Distribution Pie Chart"
 				},
 				data: [
-				{
-					type: "pie", //change type to bar, line, area, pie, etc
-					dataPoints: [
-					{ x: 1, y: 71 },
-					{ x: 2, y: 55 }
-
-					]
-                                        //Uncomment below line to add data coming from the controller.
-					//dataPoints: @Html.Raw(ViewBag.DataPoints),
+                    {
+                        type: "pie", //change type to bar, line, area, pie, etc
+					    //Uncomment below line to add data coming from the controller.
+					dataPoints: @Html.Raw(ViewBag.DataPoints),
 				}
 				]
 			});
