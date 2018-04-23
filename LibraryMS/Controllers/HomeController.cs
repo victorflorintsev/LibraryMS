@@ -43,15 +43,13 @@ namespace LibraryMS.Controllers
             conn.Close();
 
             List<DataPoint> dataPoints = new List<DataPoint>{
-                new DataPoint(0, User0),
-                new DataPoint(1, User1),
-                new DataPoint(2, User2),
-                new DataPoint(3, User3)
+                new DataPoint(0, User0, "Employee"),
+                new DataPoint(1, User1, "Customer"),
+                new DataPoint(2, User2, "Flagged Customer"),
+                new DataPoint(3, User3, "Faculty")
             };
 
             ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
-
-
 
             return View();
         }
