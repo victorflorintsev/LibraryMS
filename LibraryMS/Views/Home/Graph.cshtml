@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewData["Title"] = "Graph";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    
+</head>
+<body>
+    <div id="chartContainer"></div>
+
+    <script type="text/javascript">
+
+		window.onload = function () {
+			var chart = new CanvasJS.Chart("chartContainer", {
+				theme: "theme2",plotOptions: {
+              pie: {
+                  showInLegend: true,
+                  animation: false,
+                  allowPointSelect: true,
+                  cursor: 'pointer'
+              }
+          },
+          legend: {
+              enabled: true
+          },
+
+				animationEnabled: true,
+				title: {
+					text:"User Types Distribution Pie Chart"
+				},
+				data: [
+                    {
+                        type: "pie", //change type to bar, line, area, pie, etc
+					    //Uncomment below line to add data coming from the controller.
+					dataPoints: @Html.Raw(ViewBag.DataPoints),
+				}
+				]
+			});
+			chart.render();
+		};
+    </script>
+
+</body>
+</html>			
