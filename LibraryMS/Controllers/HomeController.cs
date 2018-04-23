@@ -51,6 +51,8 @@ namespace LibraryMS.Controllers
 
             ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
 
+
+
             return View();
         }
 
