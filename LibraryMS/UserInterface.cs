@@ -8,5 +8,7 @@ namespace LibraryMS
     {
         void Add(Users newUser);
         List<Users> GetAll();
+        Users GetById(string username);
+        List<Fine> GetFinesById(string username);
     }
 }

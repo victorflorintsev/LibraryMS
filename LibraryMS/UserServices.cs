@@ -23,8 +23,26 @@ namespace LibraryMS
         public List<Users> GetAll()
         {
             List<Users> outList = new List<Users>();
-            foreach (Users u in _context.Users) {
+            foreach (Users u in _context.Users)
+            {
                 outList.Add(u);
+            }
+
+            return outList;
+        }
+
+        public Users GetById(string username)
+        {
+            return _context.Users.FirstOrDefault(asset => asset.UserName == username);
+
+        }
+
+        public List<Fine> GetFinesById(string username)
+        {
+            List<Fine> outList = new List<Fine>();
+            foreach (Fine f in _context.Fine)
+            {
+                outList.Add(f);
             }
 
             return outList;
