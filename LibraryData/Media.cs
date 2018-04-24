@@ -23,12 +23,12 @@ namespace LibraryData
         List<Media> SearchMedia(string search);
 
 
-
+        //steps to make MVC to fucking work
         //1->LibraryData Interface
         //Services
         //2->Controller
         //3->Models Listing
         //4->cshtml
-
+        //5->add mvc on startup
     }
 }

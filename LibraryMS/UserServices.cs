@@ -31,6 +31,7 @@ namespace LibraryMS
             return outList;
         }
 
+<<<<<<< HEAD
         public Users GetById(string username)
         {
             return _context.Users.FirstOrDefault(asset => asset.UserName == username);
@@ -46,6 +47,8 @@ namespace LibraryMS
             }
 
             return outList;
+=======
+>>>>>>> 17163e48a69fa188ec7ca8afa1ec864595346d5f
         }
     }
 }

@@ -40,6 +40,8 @@ namespace LibraryMS
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
+            services.AddTransient<IUsers, UserServices>();
+
             services.AddMvc();
             services.AddSingleton(Configuration);
             services.AddScoped<IMedia, MediaServices>();

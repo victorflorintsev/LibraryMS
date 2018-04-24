@@ -1,4 +1,11 @@
-﻿@model LibraryMS.Models.Media.MediaIndexModel
+﻿@using Microsoft.AspNetCore.Identity
+@using LibraryMS.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+@model LibraryMS.Models.Media.MediaIndexModel
 
 <div id="assets">
     <h3>Library Catalog</h3>
@@ -26,17 +33,20 @@
             </thead>
             <tbody>
                 @foreach (var asset in Model.Assets)
-            {
-                <tr class="assetRow">
+                {
+                    <tr class="assetRow">
 
-                    <td class="">@asset.Title</td>
-                    <td class="">@asset.Genre</td>
-                    <td class="">@asset.Author</td>
-                    <td class="">@asset.CallNum</td>
-                    <td class=""><a asp-action="Checkout">Checkout</a></td>
-                </tr>
+                        <td class="">@asset.Title</td>
+                        <td class="">@asset.Genre</td>
+                        <td class="">@asset.Author</td>
+                        <td class="">@asset.CallNum</td>
+                        @if (!SignInManager.IsSignedIn(User))
+                        {
+                            <td class=""><a asp-action="Checkout">Checkout</a></td>
+                        }
+                    </tr>
 
-        }
+                }
             </tbody>
         </table>
     </div>

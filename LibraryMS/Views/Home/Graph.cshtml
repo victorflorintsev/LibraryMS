@@ -13,17 +13,17 @@
 </head>
 <body>
     <div id="chartContainer"></div>
-
+    
     <script type="text/javascript">
 
 		window.onload = function () {
-			var chart = new CanvasJS.Chart("chartContainer", {
-				theme: "theme2",
+            var chart = new CanvasJS.Chart("chartContainer", {
+                theme: "theme2",
                 animationEnabled: true,
-				title: {
-					text:"User Types Distribution Pie Chart"
-				},
-				data: [
+                title: {
+                    text: "User Types Distribution Pie Chart"
+                },
+                data: [
                     {
                         type: "pie", //change type to bar, line, area, pie, etc
                         showInLegend: true,
@@ -31,11 +31,12 @@
 
                         dataPoints: @Html.Raw(ViewBag.DataPoints)
 				}
-				]
+                ]
+              
 			});
-			chart.render();
+            chart.render();
 		};
     </script>
-
 </body>
+
 </html>			
