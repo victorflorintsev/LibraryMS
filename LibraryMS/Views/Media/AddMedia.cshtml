@@ -12,55 +12,61 @@
 		</tr>
 
 		<tr>
-			<td>Title: </td>
-			<td>
-				@Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+			<td> </td>
+            <td>
+                <br>
+                @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Title" })
+            </td>
+		</tr>
+
+        <tr>
+            <td> </td>
+            <td> <br>
+
+                @Html.DropDownListFor(m => m.Type, new List<SelectListItem>
+            { new SelectListItem{Text="Books", Value="0"},
+            new SelectListItem{Text="Videos", Value="1"}}, "Category", new { @class = "form-control" })
+            </td>
+        </tr>
+
+		<tr>
+			<td>  </td>
+			<td> <br>
+				@Html.TextBoxFor(m => m.Author, new { @class = "form-control", @placeholder = "Author" })
 			</td>
 		</tr>
 
 		<tr>
-			<td>Type: </td>
-			<td>
-				@Html.DropDownListFor(m => m.Type, new List<SelectListItem>
-					{ new SelectListItem{Text="Books", Value="0"},
-					new SelectListItem{Text="Videos", Value="1"}}, "Please select")
+			<td>  </td>
+			<td> <br>
+				@Html.TextBoxFor(m => m.Isbn, new { @class = "form-control", @placeholder = "ISBN" })
 			</td>
 		</tr>
 
 		<tr>
-			<td>Author: </td>
-			<td>
-				@Html.TextBoxFor(m => m.Author)
-			</td>
-		</tr>
-
-		<tr>
-			<td>ISBN: </td>
-			<td>
-				@Html.TextBoxFor(m => m.Isbn)
-			</td>
-		</tr>
-
-		<tr>
-			<td>Call Number: </td>
-			<td>
-				@Html.TextBoxFor(m => m.CallNum)
-			</td>
+			<td> </td>
+            <td>
+                <br>
+                @Html.TextBoxFor(m => m.CallNum, new { @class = "form-control", @placeholder = "Call Number" })
+            </td>
 		</tr>
 
 
 		<tr>
-			<td>Genre: </td>
-			<td>
-				@Html.TextBoxFor(m => m.Genre)
-			</td>
+			<td> </td>
+            <td>
+                <br>
+                @Html.TextBoxFor(m => m.Genre, new { @class = "form-control", @placeholder = "Genre" })
+            </td>
 		</tr>
 
 		<tr>
-			<td>Number of Copies: </td>
-			<td>
-				@Html.TextBoxFor(m => m.CopiesLeft)
-			</td>
+			<td> </td>
+            <td>
+                <br>
+                @Html.TextBoxFor(m => m.CopiesLeft, new { @class = "form-control", @placeholder = "Number of Copies" })
+                <br>
+            </td>
 		</tr>
 
 		<tr>

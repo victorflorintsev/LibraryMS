@@ -24,23 +24,41 @@ namespace LibraryMS
         public List<Users> GetAll()
         {
             List<Users> outList = new List<Users>();
-            foreach (Users u in _context.Users) {
+            foreach (Users u in _context.Users)
+            {
                 outList.Add(u);
             }
 
             return outList;
         }
 
-        public bool isEmployee(string username)
+        public Users GetById(string username)
         {
-            if (_context.Users.FirstOrDefault(asset => asset.UserName == username).UserType == 0)
+            return _context.Users.FirstOrDefault(asset => asset.UserName == username);
+
+        }
+
+        public List<Fine> GetFinesById(string username)
+        {
+            List<Fine> outList = new List<Fine>();
+            foreach (Fine f in _context.Fine)
             {
-                return true;
+                outList.Add(f);
             }
-            return false;
+
+            return outList;
+        }
+
+            public bool IsEmployee(string username)
+            {
+                if (_context.Users.FirstOrDefault(asset => asset.UserName == username).UserType == 0)
+                {
+                    return true;
+                }
+                return false;
+            }
         }
     }
-}
 
 
 

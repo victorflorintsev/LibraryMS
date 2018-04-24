@@ -27,5 +27,11 @@ namespace LibraryMS.Controllers
         {
             return View();
         }
+
+        public IActionResult UserProfile()
+        {
+            Users users = _context.GetById(User.Identity.Name);
+            return View(users);
+        }
     }
 }

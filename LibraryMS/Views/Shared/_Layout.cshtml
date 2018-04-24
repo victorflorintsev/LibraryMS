@@ -42,7 +42,8 @@
                     @if (SignInManager.IsSignedIn(User))
                     {
                         <li><a asp-area="" asp-controller="Home" asp-action="About">Members Only</a></li>
-                        @if (@UserServices.isEmployee(User.Identity.Name))
+                        <li><a asp-area="" asp-controller="Users" asp-action="UserProfile">My Profile</a></li>
+                        @if (@UserServices.IsEmployee(User.Identity.Name))
                         {
                             <li><a asp-area="" asp-controller="Media" asp-action="AddMedia">Add Media</a></li>
                             <li><a asp-area="" asp-controller="Home" asp-action="Graph">Graph</a></li>

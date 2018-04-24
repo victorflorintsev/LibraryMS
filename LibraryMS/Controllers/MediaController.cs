@@ -60,6 +60,11 @@ namespace LibraryMS.Controllers
             return View();
         }        
 
+        public IActionResult AddMedia()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult AddMedia(MediaIndexListingModel model)
         {
