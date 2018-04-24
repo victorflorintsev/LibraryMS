@@ -37,7 +37,6 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-<<<<<<< HEAD
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Media" asp-action="Index">Catalog</a></li>
                     @if (SignInManager.IsSignedIn(User))
@@ -50,17 +49,6 @@
                             <li><a asp-area="" asp-controller="Users" asp-action="Index">Users Index</a></li>
                         }
                     }
-=======
-                    <li><a asp-area="" asp-controller="Media" asp-action="Index">Catalog</a></li>
-
-
-                    @if (SignInManager.IsSignedIn(User))
-    {
-                <li><a asp-area="" asp-controller="Home" asp-action="Graph">Graph</a></li>
-                <li><a asp-area="" asp-controller="Media" asp-action="AddMedia">Add Media</a></li>
-                <li><a asp-area="" asp-controller="Users" asp-action="Index">Users Index</a></li>
-}
->>>>>>> 9f52862d0fdaa43e268de797066571858fa40966
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
