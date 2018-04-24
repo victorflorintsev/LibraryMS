@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using LibraryMS.Models;
+using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace LibraryMS
 {
@@ -48,6 +49,13 @@ namespace LibraryMS
 
             return outList;
 =======
+        public bool isEmployee(string username)
+        {
+            if (_context.Users.FirstOrDefault(asset => asset.UserName == username).UserType == 0)
+            {
+                return true;
+            }
+            return false;
 >>>>>>> 17163e48a69fa188ec7ca8afa1ec864595346d5f
         }
     }

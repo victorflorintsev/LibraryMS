@@ -12,6 +12,7 @@ namespace LibraryMS
         Users GetById(string username);
         List<Fine> GetFinesById(string username);
 =======
+        bool isEmployee(string username);
 >>>>>>> 17163e48a69fa188ec7ca8afa1ec864595346d5f
     }
 }
