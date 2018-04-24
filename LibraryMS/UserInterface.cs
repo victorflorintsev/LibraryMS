@@ -8,5 +8,6 @@ namespace LibraryMS
     {
         void Add(Users newUser);
         List<Users> GetAll();
+        bool isEmployee(string username);
     }
 }

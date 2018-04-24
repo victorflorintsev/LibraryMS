@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using LibraryMS.Models
+@using LibraryMS
 
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
@@ -37,15 +38,16 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                     <li><a asp-area="" asp-controller="Media" asp-action="Index">Catalog</a></li>
-                    
                     @if (SignInManager.IsSignedIn(User))
                     {
-                        <li><a asp-area="" asp-controller="Home" asp-action="Graph">Graph</a></li>
-                        <li><a asp-area="" asp-controller="Media" asp-action="AddMedia">Add Media</a></li>
-                        <li><a asp-area="" asp-controller="Users" asp-action="Index">Users Index</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="About">Members Only</a></li>
+                        @if (@UserServices.isEmployee(User.Identity.Name))
+                        {
+                            <li><a asp-area="" asp-controller="Media" asp-action="AddMedia">Add Media</a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="Graph">Graph</a></li>
+                            <li><a asp-area="" asp-controller="Users" asp-action="Index">Users Index</a></li>
+                        }
                     }
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
