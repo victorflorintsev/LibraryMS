@@ -238,6 +238,7 @@ namespace LibraryMS.Controllers
                 {
                     Users usertodb = new Users
                     {
+                        UserType = 1,
                         AddressStreet = model.Address,
                         AddressCity = model.AddressCity,
                         AddressState = model.AddressState,
