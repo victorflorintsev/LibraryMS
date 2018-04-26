@@ -6,6 +6,7 @@ namespace LibraryMS
 {
     public interface IUsers
     {
+        string getMediaTypeString(int id);
         void Add(Users newUser);
         List<Users> GetAll();
         Users GetById(string username);

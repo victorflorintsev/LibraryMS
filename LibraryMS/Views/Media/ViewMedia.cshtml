@@ -1,4 +1,6 @@
-﻿@model LibraryData.LIBDBModels.Media
+﻿@using LibraryMS;
+
+@model LibraryData.LIBDBModels.Media
 
 @{
     ViewData["Title"] = "ViewMedia";
@@ -45,7 +47,7 @@
             @Html.DisplayNameFor(model => model.MediaType)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.MediaType)
+            @UserServices.getMediaTypeString(Int32.Parse(@Html.ValueFor(model => model.MediaType)))
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.CallNum)
@@ -74,6 +76,6 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Checkout Book", "Checkout", new { id = Model.MediaId }) |
+    @Html.ActionLink("Checkout", "Checkout", new { id = Model.MediaId }) |
     <a asp-action="Index">Back to List</a>
 </div>

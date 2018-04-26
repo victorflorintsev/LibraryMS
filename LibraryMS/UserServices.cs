@@ -52,6 +52,11 @@ namespace LibraryMS
 
         }
 
+        public string getMediaTypeString(int id)
+        {
+            return _context.MediaType.FirstOrDefault(asset => asset.MediaTypeId == id).MediaTypeName;
+        }
+
         public List<Fine> GetFinesById(string username)
         {
             List<Fine> outList = new List<Fine>();
