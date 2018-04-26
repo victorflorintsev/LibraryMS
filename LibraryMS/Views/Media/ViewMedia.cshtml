@@ -1,4 +1,9 @@
-﻿@using LibraryMS;
+﻿@using Microsoft.AspNetCore.Identity
+@using LibraryMS.Models
+@using LibraryMS
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 @model LibraryData.LIBDBModels.Media
 
@@ -76,6 +81,8 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Checkout", "Checkout", new { id = Model.MediaId }) |
-    <a asp-action="Index">Back to List</a>
+    @if (SignInManager.IsSignedIn(User)) {
+        @Html.ActionLink("Checkout", "Checkout", new { id = Model.MediaId })
+                       }
+    <a asp-action="Index">| Back to List</a>
 </div>
