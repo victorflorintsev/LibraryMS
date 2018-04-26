@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using LibraryData;
 using LibraryMS.Models.Media;
+using LibraryMS.Views.Models.Media;
 
 namespace LibraryMS.Controllers
 {
@@ -12,9 +13,11 @@ namespace LibraryMS.Controllers
     {
 
         private IMedia _assets;
-        public MediaController(IMedia assets)
+        private readonly IUsers _userServices;
+        public MediaController(IMedia assets, IUsers userServices)
         {
             _assets = assets;
+            _userServices = userServices;
         }
         public IActionResult Index(string search = null)
         {
@@ -55,9 +58,19 @@ namespace LibraryMS.Controllers
             return View(model);
         }
 
-        public IActionResult Checkout()
+        public IActionResult ViewMedia(int id)
         {
-            return View();
+            LibraryData.LIBDBModels.Media m = _assets.getbyID2(id);
+            return View(m);
+        }
+
+        public IActionResult Checkout(int id)
+        {
+            int bookid = id;
+            CheckoutModel toView = new CheckoutModel();
+            toView.media = _assets.getbyID2(bookid);
+            toView.borrow = _userServices.checkout(bookid, User.Identity.Name);
+            return View(toView);
         }        
 
         public IActionResult AddMedia()

@@ -41,6 +41,11 @@ namespace LibraryServices
             return _context.Media.Include(asset=>asset.Title).Include(asset => asset.MediaType).FirstOrDefault(asset => asset.MediaId == id);   
         }
 
+        public Media getbyID2(int id)
+        {
+            return _context.Media.FirstOrDefault(asset => asset.MediaId == id);
+        }
+
         public string getCallNum(int id)
         {
 

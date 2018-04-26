@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using LibraryMS.Models
+@using LibraryMS
 
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
@@ -34,17 +35,14 @@
             <tbody>
                 @foreach (var asset in Model.Assets)
                 {
-                    <tr class="assetRow">
+                <tr class="assetRow">
 
-                        <td class="">@asset.Title</td>
-                        <td class="">@asset.Genre</td>
-                        <td class="">@asset.Author</td>
-                        <td class="">@asset.CallNum</td>
-                        @if (!SignInManager.IsSignedIn(User))
-                        {
-                            <td class=""><a asp-action="Checkout">Checkout</a></td>
-                        }
-                    </tr>
+                    <td class="">@asset.Title</td>
+                    <td class="">@asset.Genre</td>
+                    <td class="">@asset.Author</td>
+                    <td class="">@asset.CallNum</td>
+                    <td class="">@Html.ActionLink("Info/Checkout", "ViewMedia", new { id = asset.Id })</td>
+                </tr>
 
                 }
             </tbody>

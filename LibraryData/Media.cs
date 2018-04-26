@@ -21,6 +21,8 @@ namespace LibraryData
         int getCopiesLeft(int id);
         int getMaxCopies(int id);
         List<Media> SearchMedia(string search);
+        Media getbyID2(int id);
+       
 
 
         //steps to make MVC to fucking work

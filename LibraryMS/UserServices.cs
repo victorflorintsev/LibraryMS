@@ -31,6 +31,21 @@ namespace LibraryMS
 
             return outList;
         }
+        public Borrow checkout(int bookid, string username)
+        {
+            Borrow outBorrow = new Borrow();
+            outBorrow.UserName = username;
+            outBorrow.MediaId = bookid;
+            outBorrow.IssueDate = DateTime.Today;
+            outBorrow.DueDate = DateTime.Today.AddDays(10);
+            outBorrow.Media = _context.Media.FirstOrDefault(asset => asset.MediaId == bookid);
+            outBorrow.UserNameNavigation = _context.Users.FirstOrDefault(asset => asset.UserName == username);
+
+            _context.Add(outBorrow);
+            _context.SaveChanges();
+            return outBorrow;
+        }
+
 
         public Users GetById(string username)
         {

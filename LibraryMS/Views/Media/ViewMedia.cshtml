@@ -1,0 +1,79 @@
+﻿@model LibraryData.LIBDBModels.Media
+
+@{
+    ViewData["Title"] = "ViewMedia";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewMedia</h2>
+
+<div>
+    <h4>Media</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MediaId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MediaId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Isbn)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Isbn)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Author)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Genre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Genre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MediaType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MediaType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CallNum)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CallNum)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateAdded)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateAdded)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CopiesLeft)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CopiesLeft)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MaxCopies)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaxCopies)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Checkout Book", "Checkout", new { id = Model.MediaId }) |
+    <a asp-action="Index">Back to List</a>
+</div>

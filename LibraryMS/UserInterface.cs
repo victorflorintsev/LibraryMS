@@ -11,5 +11,6 @@ namespace LibraryMS
         Users GetById(string username);
         List<Fine> GetFinesById(string username);
         bool IsEmployee(string username);
+        Borrow checkout(int bookid, string name);
     }
 }
