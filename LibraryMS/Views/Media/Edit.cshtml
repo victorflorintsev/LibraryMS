@@ -1,0 +1,79 @@
+﻿@model LibraryMS.Media
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+<h4>Media</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MediaId" class="control-label"></label>
+                <input asp-for="MediaId" class="form-control" />
+                <span asp-validation-for="MediaId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Isbn" class="control-label"></label>
+                <input asp-for="Isbn" class="form-control" />
+                <span asp-validation-for="Isbn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Author" class="control-label"></label>
+                <input asp-for="Author" class="form-control" />
+                <span asp-validation-for="Author" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Genre" class="control-label"></label>
+                <input asp-for="Genre" class="form-control" />
+                <span asp-validation-for="Genre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MediaType" class="control-label"></label>
+                <input asp-for="MediaType" class="form-control" />
+                <span asp-validation-for="MediaType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CallNum" class="control-label"></label>
+                <input asp-for="CallNum" class="form-control" />
+                <span asp-validation-for="CallNum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateAdded" class="control-label"></label>
+                <input asp-for="DateAdded" class="form-control" />
+                <span asp-validation-for="DateAdded" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CopiesLeft" class="control-label"></label>
+                <input asp-for="CopiesLeft" class="form-control" />
+                <span asp-validation-for="CopiesLeft" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaxCopies" class="control-label"></label>
+                <input asp-for="MaxCopies" class="form-control" />
+                <span asp-validation-for="MaxCopies" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -26,6 +26,7 @@ namespace LibraryServices
             return _context.Media;
         }
 
+
         public string getAuthorOrDirector(int id)
         {
             return _context.Media.FirstOrDefault(a => a.MediaId == id).Author;
@@ -97,6 +98,12 @@ namespace LibraryServices
             return _context.Media
                 .Where(m => m.Title.Contains(search) || m.Author.Contains(search) || m.Isbn.Equals(search) 
                 || m.CallNum.Equals(search)).ToList();
+        }
+
+        public void Update(Media updatedMedia)
+        {
+            _context.Entry(updatedMedia).State = EntityState.Modified;
+            _context.SaveChanges();
         }
     }
 }

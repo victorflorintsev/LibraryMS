@@ -22,7 +22,8 @@ namespace LibraryData
         int getMaxCopies(int id);
         List<Media> SearchMedia(string search);
         Media getbyID2(int id);
-       
+        void Update(Media updatedMedia);
+
 
 
         //steps to make MVC to fucking work

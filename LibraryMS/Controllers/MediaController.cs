@@ -11,7 +11,6 @@ namespace LibraryMS.Controllers
 {
     public class MediaController : Controller
     {
-
         private IMedia _assets;
         private readonly IUsers _userServices;
         public MediaController(IMedia assets, IUsers userServices)
@@ -101,6 +100,23 @@ namespace LibraryMS.Controllers
             _assets.Add(media);
 
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            Media mediaToEdit = _userServices.getMediaById(id);
+            return View(mediaToEdit);
+            //return View(_context.Media.FirstOrDefault(asset => asset.MediaId == id));
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public IActionResult Edit(LibraryData.LIBDBModels.Media media)
+        {
+            _assets.Update(media);
+
+            return RedirectToAction("index");
+               
         }
     }
 }

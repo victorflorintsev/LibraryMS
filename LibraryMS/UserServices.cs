@@ -76,7 +76,12 @@ namespace LibraryMS
                 }
                 return false;
             }
+
+        public Media getMediaById(int id)
+        {
+            return _context.Media.FirstOrDefault(asset => asset.MediaId == id);
         }
+    }
     }
 
 
