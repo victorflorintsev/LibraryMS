@@ -54,6 +54,49 @@ namespace LibraryMS.Controllers
             return View();
         }
 
+        public IActionResult Update() //checks the borrow table if users are overdue
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = "Server=den1.mssql4.gear.host;Database=cosc3380;Uid=cosc3380;Pwd=vfegaf$;";
+            conn.Open();
+
+            string late_users = "select* from LIBDB.BORROW where Due_Date<GETDATE() and Return_Date is NULL";
+            SqlCommand comm1= new SqlCommand(late_users,conn);
+
+            //reads the query of all the late users and put them into a list
+            SqlDataReader reader = comm1.ExecuteReader();
+            List<string> str = new List<string>();
+            while (reader.Read())
+            {
+                str.Add(reader.GetValue(0).ToString());
+            }
+            reader.Close();
+           for(int i =0; i<str.Count;i++)
+            {
+                string query1 = "select count(*) from LIBDB.FINE where UserName='"+str[i]+"'";
+                SqlCommand comm2 = new SqlCommand(query1, conn);
+                int user_exist = Convert.ToInt32(comm2.ExecuteScalar().ToString());
+                if(user_exist<1)//we have to insert the user to fine table
+                {
+                    string insert_fine = "insert into LIBDB.FINE values('"+str[i]+"', 0, 1, GETDATE() + 20)";
+                    SqlCommand insert_fine_user = new SqlCommand(insert_fine, conn);
+                    insert_fine_user.ExecuteNonQuery();
+                }
+                else
+                {
+                    string update_fine = " UPDATE LIBDB.FINE set AMOUNT = 1 where UserName='"+str[i]+"'";
+                    SqlCommand update_fine_user = new SqlCommand(update_fine, conn);
+                    update_fine_user.ExecuteNonQuery();
+                }
+                //flag the customer
+                string set_flag = "UPDATE LIBDB.USERS set USER_TYPE = 2 where UserName='" + str[i] + "'";
+                SqlCommand update_users = new SqlCommand(set_flag, conn);
+                update_users.ExecuteNonQuery();
+            }
+           
+            return View();
+        }
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
@@ -73,4 +116,5 @@ namespace LibraryMS.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
+
 }
