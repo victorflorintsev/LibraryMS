@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using LibraryMS.Models
-@using LibraryMS.Views
+
 @using LibraryMS
 
 @inject SignInManager<ApplicationUser> SignInManager
@@ -42,22 +42,22 @@
                     <td class="">@asset.Genre</td>
                     <td class="">@asset.Author</td>
                     <td class="">@asset.CallNum</td>
-                    @if (!SignInManager.IsSignedIn(User)) {
-                        <td class="">@Html.ActionLink("Info/Checkout", "Login", "Account")</td>
 
-                    } else {
-                        <td class="">@Html.ActionLink("Info/Checkout", "ViewMedia", new { id = asset.Id })</td>
-                        @if (@UserServices.IsEmployee(User.Identity.Name)) {
-                            <td class="">@Html.ActionLink("Edit", "Edit", new { id = asset.Id }) </td>
-                        }
-                }
+                    <td class="">@Html.ActionLink("Info/Checkout", "ViewMedia", new { id = asset.Id })</td>
+
+                    @if (SignInManager.IsSignedIn(User) && (UserServices.IsEmployee(User.Identity.Name))){ 
+                    <td class="">@Html.ActionLink("Edit", "Edit", new { id = asset.Id }) </td>}
+
+
+
 
 
 
                 </tr>
-                        
+                           
 
-                    }
+
+                        }
             </tbody>
         </table>
     </div>
