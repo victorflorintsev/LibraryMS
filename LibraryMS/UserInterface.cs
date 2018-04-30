@@ -16,5 +16,6 @@ namespace LibraryMS
         Media getMediaById(int id);
         string getUserTypeString(int id);
         void Update(Users updatedUser);
+        IEnumerable<Borrow> GetBorrowedMediaById(string username);
     }
 }

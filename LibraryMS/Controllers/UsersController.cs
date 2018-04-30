@@ -46,6 +46,15 @@ namespace LibraryMS.Controllers
             return View(user);
         }
 
+        public IActionResult CheckoutHistory()
+        {
+            string username = User.Identity.Name;
+            IEnumerable<Borrow> borrowedMedia = _context.GetBorrowedMediaById(username);
+            Users outUser = new Users();
+            outUser.Borrow = new List<Borrow>(borrowedMedia);
+            return View(outUser);
+        }
+
 
         [HttpGet]
         public IActionResult EditProfile()

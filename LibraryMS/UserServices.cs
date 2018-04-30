@@ -92,6 +92,11 @@ namespace LibraryMS
             _context.Entry(updatedUser).State = EntityState.Modified;
             _context.SaveChanges();
         }
+
+        public IEnumerable<Borrow> GetBorrowedMediaById(string username)
+        {
+            return _context.Borrow.ToList().Where(asset => asset.UserName == username);
+        }
     }
     }
 

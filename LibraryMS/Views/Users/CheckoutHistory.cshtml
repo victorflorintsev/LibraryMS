@@ -1,0 +1,57 @@
+﻿@model LibraryMS.Users
+
+@{
+    ViewData["Title"] = "CheckoutHistory";
+}
+
+<link rel="stylesheet" href="~/css/MakeItPretty.css" />
+
+<div class="row">
+    <div class="col-xs-4">
+        @Html.RenderPartialAsync("UserProfile")
+    </div>
+    <div class="col-xs-7">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        <br /> <br /> <br />
+                        Media ID
+                    </th>
+                    <th>
+                        Issue Date
+                    </th>
+                    <th>
+                        Due Date
+                    </th>
+                    <th>
+                        Return Date
+                    </th>
+
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Borrow)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MediaId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IssueDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DueDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReturnDate)
+                    </td>
+
+                </tr>
+        }
+            </tbody>
+        </table>
+    </div>
+</div>
