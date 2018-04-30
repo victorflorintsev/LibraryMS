@@ -4,99 +4,53 @@
     ViewData["Title"] = "AccountInfo";
 }
 
-<h2>AccountInfo</h2>
+<link rel="stylesheet" href="~/css/MakeItPretty.css" />
 
-<div>
-    <h4>Users</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.PasswordHash)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PasswordHash)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.AccessFailedCount)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AccessFailedCount)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.LastLoginAttempt)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.LastLoginAttempt)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.UserType)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.UserType)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.AddressStreet)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AddressStreet)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.AddressCity)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AddressCity)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.AddressZipcode)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AddressZipcode)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.AddressState)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AddressState)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Birthday)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Birthday)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.MembershipDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.MembershipDate)
-        </dd>
-    </dl>
+<div class="row">
+    <div class="col-xs-6">
+        @Html.RenderPartialAsync("UserProfile")
+    </div>
+
+    <div class="col-xs-6">
+        <hr />
+        <dl>
+            <dt>
+                <br> <br> <br>
+                Email:
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.UserName)
+            </dd>
+            <dt>
+                <br>
+                Membership Since:
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MembershipDate)
+            </dd>
+            <dt>
+                <br>
+                Phone Number:
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
+            <dt>
+                <br>
+                @Html.DisplayNameFor(model => model.Birthday):
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Birthday)
+            </dd>
+            <dt>
+                <br>
+                Address:
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AddressStreet) @Html.DisplayFor(model => model.AddressCity), @Html.DisplayFor(model => model.AddressState) @Html.DisplayFor(model => model.AddressZipcode)
+                <br> <br> <br> <br>  <br>  <br> <br>  <br> <br>
+            </dd>
+        </dl>
+    </div>
 </div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
-</div>
+

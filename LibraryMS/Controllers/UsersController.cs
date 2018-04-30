@@ -33,13 +33,17 @@ namespace LibraryMS.Controllers
 
         public IActionResult UserProfile()
         {
-            //string userName = username;
-            //UserViewModel toView = new UserViewModel();
-            //toView.User = _context.GetById(userName);
             string username = User.Identity.Name;
 
             Users users = _context.GetById(username);
             return View(users);
+        }
+
+        public IActionResult AccountInfo()
+        {
+            string username = User.Identity.Name;
+            Users user = _context.GetById(username);
+            return View(user);
         }
 
 

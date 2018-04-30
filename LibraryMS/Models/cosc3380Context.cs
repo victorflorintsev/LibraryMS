@@ -442,7 +442,7 @@ namespace LibraryMS
                     .HasColumnName("Membership_Date")
                     .HasColumnType("date");
 
-                entity.Property(e => e.PasswordHash).IsRequired();
+                entity.Property(e => e.PasswordHash);
 
                 entity.Property(e => e.PhoneNumber)
                     .HasColumnName("Phone_Number")
