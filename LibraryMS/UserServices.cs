@@ -42,6 +42,7 @@ namespace LibraryMS
             outBorrow.UserNameNavigation = _context.Users.FirstOrDefault(asset => asset.UserName == username);
 
             _context.Add(outBorrow);
+            _context.SaveChangesAsync();
             return outBorrow;
         }
 
