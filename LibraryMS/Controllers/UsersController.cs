@@ -50,7 +50,7 @@ namespace LibraryMS.Controllers
         {
             string username = User.Identity.Name;
             IEnumerable<Borrow> borrowedMedia = _context.GetBorrowedMediaById(username);
-            Users outUser = new Users();
+            Users outUser = _context.GetById(username);
             outUser.Borrow = new List<Borrow>(borrowedMedia);
             return View(outUser);
         }
