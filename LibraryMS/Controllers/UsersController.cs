@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LibraryMS.Views.Models;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -11,7 +12,9 @@ namespace LibraryMS.Controllers
     public class UsersController : Controller
     {
         // GET: /<controller>/
-        private readonly IUsers _context;
+      
+        private IUsers _context;
+
         public UsersController(IUsers context)
         {
             _context = context;
@@ -30,8 +33,30 @@ namespace LibraryMS.Controllers
 
         public IActionResult UserProfile()
         {
-            Users users = _context.GetById(User.Identity.Name);
+            //string userName = username;
+            //UserViewModel toView = new UserViewModel();
+            //toView.User = _context.GetById(userName);
+            string username = User.Identity.Name;
+
+            Users users = _context.GetById(username);
             return View(users);
+        }
+
+
+        [HttpGet]
+        public IActionResult EditProfile()
+        {
+            Users userToEdit = _context.GetById(User.Identity.Name);
+            return View(userToEdit);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public IActionResult EditProfile(Users user)
+        {
+            _context.Update(user);
+
+            return RedirectToAction("UserProfile");
+
         }
     }
 }

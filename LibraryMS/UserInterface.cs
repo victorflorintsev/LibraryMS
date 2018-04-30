@@ -14,5 +14,7 @@ namespace LibraryMS
         bool IsEmployee(string username);
         Borrow checkout(int bookid, string name);
         Media getMediaById(int id);
+        string getUserTypeString(int id);
+        void Update(Users updatedUser);
     }
 }

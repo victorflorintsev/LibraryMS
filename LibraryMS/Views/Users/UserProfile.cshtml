@@ -1,8 +1,53 @@
-﻿@model LibraryMS.Users
+﻿@using Microsoft.AspNetCore.Identity
+@using LibraryMS.Views.Models
+@using LibraryMS
+
+@model LibraryMS.Users
 
 @{
     ViewData["Title"] = "UserProfile";
 }
+
+<link rel="stylesheet" href="~/css/MakeItPretty.css" />
+
+<div class="container">
+    <div class="row profile">
+        <div class="col-md-3">
+            <div class="profil-sidebar">
+                <div class="profile-user-pic">
+                    <img src="https://www.guarddome.com/assets/images/profile-img.jpg" alt="" class="img-responsive img-circle" />
+                </div>
+                <div class="profile-user-title">
+                    <div class="profile-user-name">
+                        @Html.DisplayFor(model => model.FirstName)
+                        @Html.DisplayFor(model => model.LastName)
+                    </div>
+                    <div class="profile-user-type">
+                        @UserServices.getUserTypeString(Int32.Parse(@Html.ValueFor(model => model.UserType)))
+                    </div>
+                </div>
+                <div class="profile-user-buttons">
+                    <button class="btn btn-success" style="background-color:lightskyblue" onclick="location.href='@Url.Action("EditProfile", "Users")'">Edit Profile</button>
+                </div>
+                <div class="profile-user-menu">
+                    <ul class="nav">
+                        <li class="active"><a href=""><i class="glyphicon glyphicon-user"></i>Account info</a></li>
+                        <li class="active"><a href=""><i class="glyphicon glyphicon-barcode"></i>Your checkouts</a></li>
+                        <li class="active"><a href=""><i class="glyphicon glyphicon-hourglass"></i>Holds</a></li>
+                        <li class="active"><a href=""><i class="glyphicon glyphicon-alert"></i>Fines</a></li>
+                        </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <p>
+                <!---->
+            </p>
+        </div>
+    </div>
+</div>
+
+
 
 <div>
     <h4><font color="blue">My Profile</font></h4>
@@ -10,7 +55,7 @@
     <dl class="dl-horizontal">
         <dt>
             Name:
-        </dt>       
+        </dt>
         <dd>
             @Html.DisplayFor(model => model.FirstName)
             @Html.DisplayFor(model => model.LastName)
@@ -60,7 +105,7 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.User.UserName*/ }) |
+
     <!-- how to do links <a asp-action="Index">Back to List</a> -->
 </div>

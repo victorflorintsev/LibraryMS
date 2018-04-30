@@ -57,6 +57,11 @@ namespace LibraryMS
             return _context.MediaType.FirstOrDefault(asset => asset.MediaTypeId == id).MediaTypeName;
         }
 
+        public string getUserTypeString(int id)
+        {
+            return _context.UserType.FirstOrDefault(asset => asset.UserTypeId == id).UserTypeString;
+        }
+
         public List<Fine> GetFinesById(string username)
         {
             List<Fine> outList = new List<Fine>();
@@ -80,6 +85,12 @@ namespace LibraryMS
         public Media getMediaById(int id)
         {
             return _context.Media.FirstOrDefault(asset => asset.MediaId == id);
+        }
+
+        public void Update(Users updatedUser)
+        {
+            _context.Entry(updatedUser).State = EntityState.Modified;
+            _context.SaveChanges();
         }
     }
     }

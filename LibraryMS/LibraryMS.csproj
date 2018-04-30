@@ -7,9 +7,21 @@
 
   <ItemGroup>
     <Compile Remove="Areas\**" />
+    <Compile Remove="Views\Models\NewFolder1\**" />
+    <Compile Remove="Views\Models\NewFolder\**" />
     <Content Remove="Areas\**" />
+    <Content Remove="Views\Models\NewFolder1\**" />
+    <Content Remove="Views\Models\NewFolder\**" />
     <EmbeddedResource Remove="Areas\**" />
+    <EmbeddedResource Remove="Views\Models\NewFolder1\**" />
+    <EmbeddedResource Remove="Views\Models\NewFolder\**" />
     <None Remove="Areas\**" />
+    <None Remove="Views\Models\NewFolder1\**" />
+    <None Remove="Views\Models\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Views\Models\Media\UserProfile.cs" />
   </ItemGroup>
 
 
@@ -31,6 +43,10 @@
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.2" />
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.1" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\MakeItPretty.css" />
   </ItemGroup>
 
   <ItemGroup>
