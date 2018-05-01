@@ -83,6 +83,7 @@
 <div>
     @if (SignInManager.IsSignedIn(User)) {
         @Html.ActionLink("Checkout", "Checkout", new { id = Model.MediaId })
+        @Html.ActionLink("Hold", "Hold", new { id = Model.MediaId})
                        }
     <a asp-action="Index">| Back to List</a>
 </div>
