@@ -44,11 +44,24 @@ namespace LibraryMS
             //outBorrow.Media = _mediacontext.Media.FirstOrDefault(asset => asset.MediaId == bookid);
             outBorrow.Media = _context.Media.FirstOrDefault(asset => asset.MediaId == bookid);
 
+
             outBorrow.UserNameNavigation = _context.Users.FirstOrDefault(asset => asset.UserName == username);
 
             _context.Add(outBorrow);
             _context.SaveChangesAsync();
             return outBorrow;
+        }
+
+        public IsWaitlistedBy waitlist(int bookid, string username)
+        {
+            IsWaitlistedBy outWaitlist = new IsWaitlistedBy();
+            outWaitlist.MediaId = bookid;
+            outWaitlist.UserName = username;
+            outWaitlist.PositionNum = outWaitlist.PkId;
+
+            _context.Add(outWaitlist);
+            _context.SaveChangesAsync();
+            return outWaitlist;
         }
 
 
@@ -98,7 +111,8 @@ namespace LibraryMS
 
         public void Update(Users updatedUser)
         {
-            _context.Entry(updatedUser).State = EntityState.Modified;
+            _context.Users.Update(updatedUser);
+     
             _context.SaveChanges();
         }
 
@@ -167,6 +181,7 @@ namespace LibraryMS
             return records;
             throw new NotImplementedException();
         }
+
     }
     }
 

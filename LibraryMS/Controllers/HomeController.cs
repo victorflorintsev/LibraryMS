@@ -92,6 +92,7 @@ namespace LibraryMS.Controllers
                 string query1 = "select count(*) from LIBDB.FINE where UserName='"+str[i]+"'";
                 SqlCommand comm2 = new SqlCommand(query1, conn);
                 int user_exist = Convert.ToInt32(comm2.ExecuteScalar().ToString());
+
                 if(user_exist<1)//we have to insert the user to fine table
                 {
                     string insert_fine = "insert into LIBDB.FINE values('"+str[i]+"', 0, 1, GETDATE() + 20)";
@@ -105,7 +106,7 @@ namespace LibraryMS.Controllers
                     update_fine_user.ExecuteNonQuery();
                 }
                 //flag the customer
-                if (_context.GetById(User.Identity.Name).UserType < 4) {
+                if (UT[i] < 4) {
                     int test = UT[i] + 3;
                     string set_flag = "UPDATE LIBDB.USERS set USER_TYPE =" + test + "where UserName='" + str[i] + "'";
                     SqlCommand update_users = new SqlCommand(set_flag, conn);
