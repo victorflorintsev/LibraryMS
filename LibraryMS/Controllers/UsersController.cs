@@ -90,6 +90,7 @@ namespace LibraryMS.Controllers
             outUser.Fine = new List<Fine>(fines);
             return View(outUser);
         }
+<<<<<<< HEAD
         public IActionResult PayFine(decimal amount)
         {
             string username = User.Identity.Name;

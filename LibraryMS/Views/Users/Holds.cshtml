@@ -21,6 +21,17 @@
                     <th>
                         Media ID
                     </th>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Author
+                    </th>
+                    <th>
+                        ISBN
+                    </th>
+
+
 
                     <th></th>
                 </tr>
@@ -28,15 +39,24 @@
             <tbody>
                 @foreach (var item in Model.IsWaitlistedBy)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PositionNum)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.MediaId)
-                        </td>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PositionNum)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MediaId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Media.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Media.Author)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Media.Isbn)
+                    </td>
 
-                    </tr>
+                </tr>
                 }
 
             </tbody>

@@ -4,15 +4,18 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using LibraryMS.Models;
 using Microsoft.AspNetCore.Mvc.Razor;
+using LibraryData;
 
 namespace LibraryMS
 {
     public class UserServices : IUsers
     {
         private cosc3380Context _context;
-        public UserServices(cosc3380Context context)
+        private LibraryMSContext _mediacontext;
+        public UserServices(cosc3380Context context, LibraryMSContext mediacontext)
         {
             _context = context;
+            _mediacontext = mediacontext;
         }
 
         public void Add(Users newUser)
@@ -38,7 +41,7 @@ namespace LibraryMS
             outBorrow.MediaId = bookid;
             outBorrow.IssueDate = DateTime.Today;
             outBorrow.DueDate = DateTime.Today.AddDays(10);
-            outBorrow.Media = _context.Media.FirstOrDefault(asset => asset.MediaId == bookid);
+            //outBorrow.Media = _mediacontext.Media.FirstOrDefault(asset => asset.MediaId == bookid);
             outBorrow.UserNameNavigation = _context.Users.FirstOrDefault(asset => asset.UserName == username);
 
             _context.Add(outBorrow);
@@ -70,12 +73,21 @@ namespace LibraryMS
 
         public bool IsEmployee(string username)
         {
-            if (_context.Users.FirstOrDefault(asset => asset.UserName == username).UserType == 0)
+            if (_context.Users.FirstOrDefault(asset => asset.UserName == username).UserType == (0 | 3))
             {
                 return true;
             }
             return false;
         }
+        public bool IsAdministrator(string username)
+        {
+            if (_context.Users.FirstOrDefault(asset => asset.UserName == username).UserType == 3)
+            {
+                return true;
+            }
+            return false;
+        }
+
 
         public Media getMediaById(int id)
         {
@@ -95,7 +107,27 @@ namespace LibraryMS
 
         public IEnumerable<IsWaitlistedBy> GetHeldMediaById(string username)
         {
-            return _context.IsWaitlistedBy.ToList().Where(asset => asset.UserName == username);
+            IEnumerable<IsWaitlistedBy> outStuff = _context.IsWaitlistedBy.ToList().Where(asset => asset.UserName == username);
+            foreach (IsWaitlistedBy w in outStuff)
+            {
+                int id = w.MediaId;
+                LibraryData.LIBDBModels.Media intoW = _mediacontext.Media.FirstOrDefault(model => model.MediaId == id);
+                Media outmedia = new Media();
+                outmedia.Author = intoW.Author;
+                outmedia.Title = intoW.Title;
+                outmedia.Isbn = intoW.Isbn;
+                outmedia.Genre = intoW.Genre;
+                w.Media = outmedia;
+            }
+            return outStuff;
+        }
+
+        public void changeUserType(string id, int typeToChangeTo)
+        {
+            Users changedUser = _context.Users.FirstOrDefault(model => model.UserName == id);
+            changedUser.UserType = typeToChangeTo;
+            _context.Update(changedUser);
+            _context.SaveChanges();
         }
 
         public void returnBook(string userName, int mediaID)
