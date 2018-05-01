@@ -67,15 +67,17 @@ namespace LibraryMS.Controllers
             conn.ConnectionString = "Server=den1.mssql4.gear.host;Database=cosc3380;Uid=cosc3380;Pwd=vfegaf$;";
             conn.Open();
 
-            string late_users = "select* from LIBDB.BORROW where Due_Date<GETDATE() and Return_Date is NULL";
+            string late_users = "select from LIBDB.BORROW where Due_Date<GETDATE() and Return_Date is NULL";
             SqlCommand comm1= new SqlCommand(late_users,conn);
 
             //reads the query of all the late users and put them into a list
             SqlDataReader reader = comm1.ExecuteReader();
             List<string> str = new List<string>();
+            List<int> UT = new List<int>();
             while (reader.Read())
             {
                 str.Add(reader.GetValue(0).ToString());
+                UT.Add(Convert.ToInt32(reader.GetValue(1).ToString()));
             }
             reader.Close();
            for(int i =0; i<str.Count;i++)
@@ -96,11 +98,12 @@ namespace LibraryMS.Controllers
                     update_fine_user.ExecuteNonQuery();
                 }
                 //flag the customer
-                string set_flag = "UPDATE LIBDB.USERS set USER_TYPE = 2 where UserName='" + str[i] + "'";
+                string set_flag = "UPDATE LIBDB.USERS set USER_TYPE ="+UT[i] + "where UserName='" + str[i] + "'";
                 SqlCommand update_users = new SqlCommand(set_flag, conn);
                 update_users.ExecuteNonQuery();
             }
-           
+
+            conn.Close();
             return View();
         }
 

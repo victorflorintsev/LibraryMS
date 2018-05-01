@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using LibraryData;
 using LibraryMS.Models.Media;
 using LibraryMS.Views.Models.Media;
+using System.Data.SqlClient;
 
 namespace LibraryMS.Controllers
 {
@@ -18,6 +19,21 @@ namespace LibraryMS.Controllers
             _assets = assets;
             _userServices = userServices;
         }
+
+        public IActionResult Checkin(string UserName, string MediaID)
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = "Server=den1.mssql4.gear.host;Database=cosc3380;Uid=cosc3380;Pwd=vfegaf$;";
+            conn.Open();
+
+            string update_borrow = "UPDATE LIBDB.BORROW set Return_Date=GETDATE() where UserName=" + UserName + " and Media_ID=" + MediaID;
+            SqlCommand update_users = new SqlCommand(update_borrow, conn);
+            update_users.ExecuteNonQuery();
+
+            conn.Close();
+            return View();
+        }
+
         public IActionResult Index(string search = null)
         {
             if (!string.IsNullOrEmpty(search))
