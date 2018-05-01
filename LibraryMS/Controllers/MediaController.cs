@@ -26,9 +26,11 @@ namespace LibraryMS.Controllers
             conn.ConnectionString = "Server=den1.mssql4.gear.host;Database=cosc3380;Uid=cosc3380;Pwd=vfegaf$;";
             conn.Open();
 
-            string update_borrow = "UPDATE LIBDB.BORROW set Return_Date=GETDATE() where UserName=" + UserName + " and Media_ID=" + MediaID;
-            SqlCommand update_users = new SqlCommand(update_borrow, conn);
-            update_users.ExecuteNonQuery();
+            
+
+            //string update_borrow = "UPDATE LIBDB.BORROW set Return_Date=GETDATE() where UserName=" + UserName + " and Media_ID=" + MediaID;
+            //SqlCommand update_users = new SqlCommand(update_borrow, conn);
+            //update_users.ExecuteNonQuery();
 
             conn.Close();
             return View();
