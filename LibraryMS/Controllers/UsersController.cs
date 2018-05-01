@@ -24,7 +24,9 @@ namespace LibraryMS.Controllers
         public IActionResult Index()
         {
             List<Users> test = _context.GetAll();
-            return View(test);
+            UserViewModel outmodel = new UserViewModel();
+            outmodel.User = test;
+            return View(outmodel);
         }
 
         public IActionResult Create()
@@ -103,6 +105,12 @@ namespace LibraryMS.Controllers
             update_fine.ExecuteNonQuery();
 
             conn.Close();
+            return View();
+        }
+
+        public IActionResult ChangeType(string id, int changeTo)
+        {
+            _context.changeUserType(id, changeTo);
             return View();
         }
     }

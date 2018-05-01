@@ -10,8 +10,15 @@ using System.Data.SqlClient;
 
 namespace LibraryMS.Controllers
 {
-    public class HomeController : Controller
-    {
+    public class HomeController : Controller { 
+
+        private IUsers _context;
+
+        public HomeController(IUsers context)
+        {
+            _context = context;
+        }
+    
         public IActionResult Index()
         { 
             return View();
@@ -98,9 +105,11 @@ namespace LibraryMS.Controllers
                     update_fine_user.ExecuteNonQuery();
                 }
                 //flag the customer
-                string set_flag = "UPDATE LIBDB.USERS set USER_TYPE ="+UT[i] + "where UserName='" + str[i] + "'";
-                SqlCommand update_users = new SqlCommand(set_flag, conn);
-                update_users.ExecuteNonQuery();
+                if (_context.GetById(User.Identity.Name).UserType < 4) {
+                    string set_flag = "UPDATE LIBDB.USERS set USER_TYPE =" + UT[i] + "where UserName='" + str[i] + "'";
+                    SqlCommand update_users = new SqlCommand(set_flag, conn);
+                    update_users.ExecuteNonQuery();
+                }
             }
 
             conn.Close();
