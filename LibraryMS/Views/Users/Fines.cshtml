@@ -26,17 +26,25 @@
             </thead>
             <tbody>
                 @foreach (var item in Model.Fine)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Amount)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DueDate)
-                        </td>
-                    </tr>
-                }
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Amount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DueDate)
+                    </td>
+                </tr>
+        }
             </tbody>
         </table>
-       </div>
+        <form style="margin-top: 20px;" class="w3-container" asp-controller="Users" asp-action="PayFine" method="get">
+            <div class="col">
+                <input type="text" name="amount" />
+            </div>
+            <div class="col">
+                <input type="submit" class="btn btn-primary" id="filter-button" asp-controller="Users" asp-action="PayFine" />
+            </div>
+           </form>
+    </div>
     </div>
