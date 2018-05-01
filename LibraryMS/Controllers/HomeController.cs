@@ -17,6 +17,13 @@ namespace LibraryMS.Controllers
             return View();
         }
 
+        public IActionResult newCustomerCount(DateTime fromTime, DateTime toTime)
+        {
+            int x = 0;
+
+            return View();
+        }
+
         public IActionResult Graph()
         {
             SqlConnection conn = new SqlConnection();

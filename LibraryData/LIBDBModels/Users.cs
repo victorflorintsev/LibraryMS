@@ -19,6 +19,7 @@ namespace LibraryData.LIBDBModels
         public string AddressState { get; set; }
         public DateTime? Birthday { get; set; }
         public DateTime? MembershipDate { get; set; }
+        public int User_Status { get; set; }
 
         public ICollection<Customer> Customer { get; set; }
         public UserType UserTypeNavigation { get; set; }
