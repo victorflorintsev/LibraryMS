@@ -4,15 +4,18 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using LibraryMS.Models;
 using Microsoft.AspNetCore.Mvc.Razor;
+using LibraryData;
 
 namespace LibraryMS
 {
     public class UserServices : IUsers
     {
         private cosc3380Context _context;
-        public UserServices(cosc3380Context context)
+        private LibraryMSContext _mediacontext;
+        public UserServices(cosc3380Context context, LibraryMSContext mediacontext)
         {
             _context = context;
+            _mediacontext = mediacontext;
         }
 
         public void Add(Users newUser)
@@ -95,7 +98,19 @@ namespace LibraryMS
 
         public IEnumerable<IsWaitlistedBy> GetHeldMediaById(string username)
         {
-            return _context.IsWaitlistedBy.ToList().Where(asset => asset.UserName == username);
+            IEnumerable<IsWaitlistedBy> outStuff = _context.IsWaitlistedBy.ToList().Where(asset => asset.UserName == username);
+            foreach (IsWaitlistedBy w in outStuff)
+            {
+                int id = w.MediaId;
+                LibraryData.LIBDBModels.Media intoW = _mediacontext.Media.FirstOrDefault(model => model.MediaId == id);
+                Media outmedia = new Media();
+                outmedia.Author = intoW.Author;
+                outmedia.Title = intoW.Title;
+                outmedia.Isbn = intoW.Isbn;
+                outmedia.Genre = intoW.Genre;
+                w.Media = outmedia;
+            }
+            return outStuff;
         }
     }
     }
