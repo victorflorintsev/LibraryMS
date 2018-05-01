@@ -19,5 +19,6 @@ namespace LibraryMS
         IEnumerable<Borrow> GetBorrowedMediaById(string username);
         IEnumerable<IsWaitlistedBy> GetHeldMediaById(string username);
         void returnBook(string userName, int mediaID);
+        bool IsAdministrator(string username);
     }
 }
