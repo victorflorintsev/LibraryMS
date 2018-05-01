@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using LibraryMS.Views.Models;
@@ -88,6 +89,21 @@ namespace LibraryMS.Controllers
             Users outUser = _context.GetById(username);
             outUser.Fine = new List<Fine>(fines);
             return View(outUser);
+        }
+        public IActionResult PayFine(decimal amount)
+        {
+            string username = User.Identity.Name;
+
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = "Server=den1.mssql4.gear.host;Database=cosc3380;Uid=cosc3380;Pwd=vfegaf$;";
+            conn.Open();
+
+            string payfine = "UPDATE LIBDB.FINE set Amount=Amount-"+ amount + " where UserName='" + username + "'";
+            SqlCommand update_fine = new SqlCommand(payfine, conn);
+            update_fine.ExecuteNonQuery();
+
+            conn.Close();
+            return View();
         }
     }
 }

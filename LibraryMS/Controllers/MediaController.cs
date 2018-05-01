@@ -20,17 +20,16 @@ namespace LibraryMS.Controllers
             _userServices = userServices;
         }
 
-        public IActionResult Checkin(string UserName, string MediaID)
+        
+        public IActionResult Checkin(string UserName, int MediaID)
         {
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = "Server=den1.mssql4.gear.host;Database=cosc3380;Uid=cosc3380;Pwd=vfegaf$;";
             conn.Open();
 
-            
-
-            //string update_borrow = "UPDATE LIBDB.BORROW set Return_Date=GETDATE() where UserName=" + UserName + " and Media_ID=" + MediaID;
-            //SqlCommand update_users = new SqlCommand(update_borrow, conn);
-            //update_users.ExecuteNonQuery();
+            string update_borrow = "UPDATE LIBDB.BORROW set Return_Date=GETDATE() where UserName='" + UserName + "' and Media_ID=" + MediaID;
+            SqlCommand update_table = new SqlCommand(update_borrow, conn);
+            update_table.ExecuteNonQuery();
 
             conn.Close();
             return View();

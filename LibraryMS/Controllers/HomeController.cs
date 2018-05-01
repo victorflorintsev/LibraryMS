@@ -67,7 +67,7 @@ namespace LibraryMS.Controllers
             conn.ConnectionString = "Server=den1.mssql4.gear.host;Database=cosc3380;Uid=cosc3380;Pwd=vfegaf$;";
             conn.Open();
 
-            string late_users = "select from LIBDB.BORROW where Due_Date<GETDATE() and Return_Date is NULL";
+            string late_users = "SELECT USERS.UserName, User_Type FROM LIBDB.BORROW INNER JOIN LIBDB.USERS ON LIBDB.USERS.UserName = LIBDB.BORROW.UserName WHERE Due_Date<GETDATE() and Return_Date is NULL; ";
             SqlCommand comm1= new SqlCommand(late_users,conn);
 
             //reads the query of all the late users and put them into a list

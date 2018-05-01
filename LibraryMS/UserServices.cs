@@ -97,6 +97,16 @@ namespace LibraryMS
         {
             return _context.IsWaitlistedBy.ToList().Where(asset => asset.UserName == username);
         }
+
+        public void returnBook(string userName, int mediaID)
+        {
+           // var options = DbContextOptions<cosc3380Context>;
+           // var a = new cosc3380Context(options);
+            Borrow updateBorrow = _context.Borrow.FirstOrDefault(model => model.MediaId == mediaID && model.UserName == userName);
+            updateBorrow.ReturnDate = DateTime.Today;
+            _context.Update(updateBorrow);
+            _context.SaveChanges();
+        }
     }
     }
 
