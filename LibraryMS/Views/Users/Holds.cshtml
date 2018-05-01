@@ -3,35 +3,46 @@
 @{
     ViewData["Title"] = "Holds";
 }
+<link rel="stylesheet" href="~/css/MakeItPretty.css" />
 
-<h2>Holds</h2>
+<div class="row">
+    <div class="col-xs-4">
+        @Html.RenderPartialAsync("UserProfile")
+    </div>
+    <div class="col-xs-7">
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-                <th>
-                    Media ID
-                </th>
-                
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.IsWaitlistedBy) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MediaId)
-            </td>
-            
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Position #
+                    </th>
+                    <th>
+                        Media ID
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.IsWaitlistedBy)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PositionNum)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MediaId)
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        </div>
+    </div>

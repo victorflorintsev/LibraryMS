@@ -17,5 +17,6 @@ namespace LibraryMS
         string getUserTypeString(int id);
         void Update(Users updatedUser);
         IEnumerable<Borrow> GetBorrowedMediaById(string username);
+        IEnumerable<IsWaitlistedBy> GetHeldMediaById(string username);
     }
 }

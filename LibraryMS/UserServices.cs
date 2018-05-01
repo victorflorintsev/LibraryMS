@@ -98,6 +98,11 @@ namespace LibraryMS
         {
             return _context.Borrow.ToList().Where(asset => asset.UserName == username);
         }
+
+        public IEnumerable<IsWaitlistedBy> GetHeldMediaById(string username)
+        {
+            return _context.IsWaitlistedBy.ToList().Where(asset => asset.UserName == username);
+        }
     }
     }
 
