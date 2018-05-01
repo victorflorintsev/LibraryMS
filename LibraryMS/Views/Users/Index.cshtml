@@ -59,9 +59,10 @@
                     @Html.DisplayFor(modelItem => item.MembershipDate)
                 </td>
                 <td>
-                    @Html.ActionLink("Make Employee", "MakeEmployee", new { id = item.UserName }) |
-                    @Html.ActionLink("Make Admin", "MakeAdmin", new { id=item.UserName }) |
-                    @Html.ActionLink("Make Customer", "MakeCustomer", new { id = item.UserName }) |
+                    @Html.ActionLink("Make Employee", "ChangeType", new { id = item.UserName, changeTo = 0 }) |
+                    @Html.ActionLink("Make Admin", "ChangeType", new { id = item.UserName, changeTo = 3 }) |
+                    @Html.ActionLink("Make Customer", "ChangeType", new { id = item.UserName, changeTo = 1 }) |
+                    @Html.ActionLink("Make Faculty", "ChangeType", new { id = item.UserName, changeTo = 2 }) |
                 </td>
             </tr>
         }

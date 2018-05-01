@@ -92,30 +92,11 @@ namespace LibraryMS.Controllers
             return View(outUser);
         }
 
-        public IActionResult MakeEmployee(string id)
+        public IActionResult ChangeType(string id, int changeTo)
         {
-            _context.changeUserType(id, 0);
-            Index();
+            _context.changeUserType(id, changeTo);
             return View();
         }
-        public IActionResult MakeAdmin(string id)
-        {
-            _context.changeUserType(id, 3);
-            Index();
-            return View();
-        }
-        public IActionResult MakeCustomer(string id)
-        {
-            _context.changeUserType(id, 1);
-            Index();
-            return View();
-        }
-        public IActionResult MakeFaculty(string id)
-        {
-            _context.changeUserType(id, 2);
-            Index();
-            return View();
-        }
-
+        
     }
 }
