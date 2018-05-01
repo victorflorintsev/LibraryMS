@@ -47,13 +47,33 @@ namespace LibraryMS.Controllers
             SqlCommand cmd3 = new SqlCommand(count_user3, conn);
             int User3 = Convert.ToInt32(cmd3.ExecuteScalar().ToString());
 
+            string count_user4 = "select count(*) from LIBDB.USERS where User_Type=0";
+            SqlCommand cmd4 = new SqlCommand(count_user4, conn);
+            int User4 = Convert.ToInt32(cmd.ExecuteScalar().ToString());
+
+            string count_user5 = "select count(*) from LIBDB.USERS where User_Type=0";
+            SqlCommand cmd5 = new SqlCommand(count_user5, conn);
+            int User5 = Convert.ToInt32(cmd.ExecuteScalar().ToString());
+
+            string count_user6 = "select count(*) from LIBDB.USERS where User_Type=0";
+            SqlCommand cmd6 = new SqlCommand(count_user6, conn);
+            int User6 = Convert.ToInt32(cmd.ExecuteScalar().ToString());
+
+            string count_user7 = "select count(*) from LIBDB.USERS where User_Type=0";
+            SqlCommand cmd7 = new SqlCommand(count_user7, conn);
+            int User7 = Convert.ToInt32(cmd.ExecuteScalar().ToString());
+
             conn.Close();
 
             List<DataPoint> dataPoints = new List<DataPoint>{
                 new DataPoint(0, User0, "Employee"),
                 new DataPoint(1, User1, "Customer"),
-                new DataPoint(2, User2, "Flagged Customer"),
-                new DataPoint(3, User3, "Faculty")
+                new DataPoint(2, User2, "Faculty"),
+                new DataPoint(3, User3, "Admin"),
+                new DataPoint(4, User4, "Flagged Employee"),
+                new DataPoint(5, User5, "Flagged Customer"),
+                new DataPoint(6, User6, "Flagged Faculty"),
+                new DataPoint(7, User7, "Flagged Admin"),
             };
 
             ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
