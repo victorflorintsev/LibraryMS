@@ -73,12 +73,21 @@ namespace LibraryMS
 
         public bool IsEmployee(string username)
         {
-            if (_context.Users.FirstOrDefault(asset => asset.UserName == username).UserType == 0)
+            if (_context.Users.FirstOrDefault(asset => asset.UserName == username).UserType == (0 | 3))
             {
                 return true;
             }
             return false;
         }
+        public bool IsAdministrator(string username)
+        {
+            if (_context.Users.FirstOrDefault(asset => asset.UserName == username).UserType == 3)
+            {
+                return true;
+            }
+            return false;
+        }
+
 
         public Media getMediaById(int id)
         {
@@ -111,6 +120,14 @@ namespace LibraryMS
                 w.Media = outmedia;
             }
             return outStuff;
+        }
+
+        public void changeUserType(string id, int typeToChangeTo)
+        {
+            Users changedUser = _context.Users.FirstOrDefault(model => model.UserName == id);
+            changedUser.UserType = typeToChangeTo;
+            _context.Update(changedUser);
+            _context.SaveChanges();
         }
     }
     }

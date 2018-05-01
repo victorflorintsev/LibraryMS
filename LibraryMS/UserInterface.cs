@@ -12,11 +12,14 @@ namespace LibraryMS
         Users GetById(string username);
         IEnumerable<Fine> GetFinesById(string username);
         bool IsEmployee(string username);
+        bool IsAdministrator(string username);
+
         Borrow checkout(int bookid, string name);
         Media getMediaById(int id);
         string getUserTypeString(int id);
         void Update(Users updatedUser);
         IEnumerable<Borrow> GetBorrowedMediaById(string username);
         IEnumerable<IsWaitlistedBy> GetHeldMediaById(string username);
+        void changeUserType(string id, int v);
     }
 }

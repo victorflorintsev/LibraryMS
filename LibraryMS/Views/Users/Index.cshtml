@@ -14,9 +14,6 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.User.Select(m => m.UserName))
-            </th>
             
             <th></th>
         </tr>
@@ -62,9 +59,9 @@
                     @Html.DisplayFor(modelItem => item.MembershipDate)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Make Employee", "MakeEmployee", new { id = item.UserName }) |
+                    @Html.ActionLink("Make Admin", "MakeAdmin", new { id=item.UserName }) |
+                    @Html.ActionLink("Make Customer", "MakeCustomer", new { id = item.UserName }) |
                 </td>
             </tr>
         }

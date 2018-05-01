@@ -23,7 +23,9 @@ namespace LibraryMS.Controllers
         public IActionResult Index()
         {
             List<Users> test = _context.GetAll();
-            return View(test);
+            UserViewModel outmodel = new UserViewModel();
+            outmodel.User = test;
+            return View(outmodel);
         }
 
         public IActionResult Create()
@@ -89,5 +91,31 @@ namespace LibraryMS.Controllers
             outUser.Fine = new List<Fine>(fines);
             return View(outUser);
         }
+
+        public IActionResult MakeEmployee(string id)
+        {
+            _context.changeUserType(id, 0);
+            Index();
+            return View();
+        }
+        public IActionResult MakeAdmin(string id)
+        {
+            _context.changeUserType(id, 3);
+            Index();
+            return View();
+        }
+        public IActionResult MakeCustomer(string id)
+        {
+            _context.changeUserType(id, 1);
+            Index();
+            return View();
+        }
+        public IActionResult MakeFaculty(string id)
+        {
+            _context.changeUserType(id, 2);
+            Index();
+            return View();
+        }
+
     }
 }
