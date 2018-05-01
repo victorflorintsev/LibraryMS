@@ -40,7 +40,7 @@
                     <li><a asp-area="" asp-controller="Media" asp-action="Index">Catalog</a></li>
                     @if (SignInManager.IsSignedIn(User))
     {
-                <li><a asp-area="" asp-controller="Home" asp-action="About">Members Only</a></li>
+               
                 <li><a asp-area="" asp-controller="Users" asp-action="UserProfile">My Profile</a></li>
                 @if (@UserServices.IsEmployee(User.Identity.Name))
 {
@@ -54,6 +54,8 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" a\><span class="caret"></span>Reports</a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a asp-area="" asp-controller="Home" asp-action="Graph">User Type Distribution</a></li>
+                        <li><a asp-area="" asp-controller="Users" asp-action="NewCustomerCreationReport">Customer Creation</a></li>
+
                         <!--Type in other links for the dropdown menu here-->
                     </ul>
                 </li>

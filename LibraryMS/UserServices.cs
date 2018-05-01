@@ -141,6 +141,32 @@ namespace LibraryMS
             _context.Update(updateBorrow);
             _context.SaveChanges();
         }
+        public List<Users> NewCustomerCreationReport(DateTime fromTime, DateTime toTime)
+        {
+            int x = 0;
+            if (int.TryParse(fromTime.Year.ToString(), out x) && x < 2)
+            {
+                fromTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+                System.Diagnostics.Debug.WriteLine(fromTime);
+            }
+            else
+            {
+                fromTime = new DateTime(fromTime.Year, fromTime.Month, fromTime.Day, 23, 59, 59);
+            }
+            if (int.TryParse(toTime.Year.ToString(), out x) && x < 2)
+            {
+                toTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59);
+            }
+            else
+            {
+                toTime = new DateTime(toTime.Year, toTime.Month, toTime.Day, 23, 59, 59);
+            }
+
+            System.Diagnostics.Debug.WriteLine(fromTime);
+            var records = _context.Users.Where(a => a.MembershipDate >= fromTime && a.MembershipDate <= toTime).ToList<Users>();
+            return records;
+            throw new NotImplementedException();
+        }
     }
     }
 

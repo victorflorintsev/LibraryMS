@@ -21,5 +21,6 @@ namespace LibraryMS
         bool IsAdministrator(string username);
         void returnBook(string userName, int mediaID);
         void changeUserType(string id, int changeTo);
+        List<Users> NewCustomerCreationReport(DateTime fromTime, DateTime toTime);
     }
 }

@@ -1,0 +1,77 @@
+﻿@model List<LibraryMS.Users>
+@{
+    ViewData["Title"] = "NewCustomerCreationReport";
+}
+
+<h2>newCustomerCreation</h2>
+
+
+<main>
+    <section style="margin-top:150px;margin-bottom:50px;">
+        <div>
+            <div class="w3-container">
+                <div class="w3-card-4">
+                    <div class="w3-container" style="background-color: rgb(74,94,161);color: white">
+                        <h2>New User Registration Tracker</h2>
+                    </div>
+                    <form style="margin-top: 20px;" class="w3-container" asp-controller="Users" asp-action="NewCustomerCreationReport" method="get">
+                        <h3>Choose the appropriate date range:</h3>
+
+                        <div style="margin-top: 15px;" class="form-row">
+                            <div class="col-sm-2">
+                                <label>
+                                    Start Date
+                                </label>
+                            </div>
+                            <div class="col">
+                                <input type="date" name="fromTime" value="@ViewBag.fromTime">
+                            </div>
+                        </div>
+                        <div style="margin-top: 15px;" class="form-row">
+                            <div class="col-sm-2">
+                                <label>
+                                    End Date
+                                </label>
+                            </div>
+                            <div class="col">
+                                <input type="date" name="toTime" value="@ViewBag.toTime">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col">
+                                <input type="submit" class="btn btn-primary" id="filter-button">
+                                
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }
+    </section>
+    <section>
+        <div style="margin-bottom: 100px;" class="container">
+            <table id="customers">
+                <tr>
+                    <th>User Name</th>
+                    <th>Membership Date</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MembershipDate)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </section>
+
+</main>

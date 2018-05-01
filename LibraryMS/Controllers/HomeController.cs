@@ -106,7 +106,8 @@ namespace LibraryMS.Controllers
                 }
                 //flag the customer
                 if (_context.GetById(User.Identity.Name).UserType < 4) {
-                    string set_flag = "UPDATE LIBDB.USERS set USER_TYPE =" + UT[i] + "where UserName='" + str[i] + "'";
+                    int test = UT[i] + 3;
+                    string set_flag = "UPDATE LIBDB.USERS set USER_TYPE =" + test + "where UserName='" + str[i] + "'";
                     SqlCommand update_users = new SqlCommand(set_flag, conn);
                     update_users.ExecuteNonQuery();
                 }

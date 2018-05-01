@@ -113,5 +113,15 @@ namespace LibraryMS.Controllers
             _context.changeUserType(id, changeTo);
             return View();
         }
+
+        public IActionResult NewCustomerCreationReport(DateTime fromTime, DateTime toTime)
+        {
+            var records = _context.NewCustomerCreationReport(fromTime, toTime);
+            ViewBag.fromTime = fromTime;
+            ViewBag.toTime = toTime;
+            return View(records);
+        }
+
+
     }
 }
