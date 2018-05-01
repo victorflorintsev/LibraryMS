@@ -80,5 +80,14 @@ namespace LibraryMS.Controllers
             outUser.IsWaitlistedBy = new List<IsWaitlistedBy>(waitlistedMedia);
             return View(outUser);
         }
+
+        public IActionResult Fines()
+        {
+            string username = User.Identity.Name;
+            IEnumerable<Fine> fines = _context.GetFinesById(username);
+            Users outUser = _context.GetById(username);
+            outUser.Fine = new List<Fine>(fines);
+            return View(outUser);
+        }
     }
 }

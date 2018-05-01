@@ -63,25 +63,19 @@ namespace LibraryMS
             return _context.UserType.FirstOrDefault(asset => asset.UserTypeId == id).UserTypeString;
         }
 
-        public List<Fine> GetFinesById(string username)
+        public IEnumerable<Fine> GetFinesById(string username)
         {
-            List<Fine> outList = new List<Fine>();
-            foreach (Fine f in _context.Fine)
-            {
-                outList.Add(f);
-            }
-
-            return outList;
+            return _context.Fine.ToList().Where(asset => asset.UserName == username);
         }
 
-            public bool IsEmployee(string username)
+        public bool IsEmployee(string username)
+        {
+            if (_context.Users.FirstOrDefault(asset => asset.UserName == username).UserType == 0)
             {
-                if (_context.Users.FirstOrDefault(asset => asset.UserName == username).UserType == 0)
-                {
-                    return true;
-                }
-                return false;
+                return true;
             }
+            return false;
+        }
 
         public Media getMediaById(int id)
         {
