@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using LibraryMS.Views.Models;
@@ -23,9 +24,7 @@ namespace LibraryMS.Controllers
         public IActionResult Index()
         {
             List<Users> test = _context.GetAll();
-            UserViewModel outmodel = new UserViewModel();
-            outmodel.User = test;
-            return View(outmodel);
+            return View(test);
         }
 
         public IActionResult Create()
@@ -91,12 +90,21 @@ namespace LibraryMS.Controllers
             outUser.Fine = new List<Fine>(fines);
             return View(outUser);
         }
-
-        public IActionResult ChangeType(string id, int changeTo)
+<<<<<<< HEAD
+        public IActionResult PayFine(decimal amount)
         {
-            _context.changeUserType(id, changeTo);
+            string username = User.Identity.Name;
+
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = "Server=den1.mssql4.gear.host;Database=cosc3380;Uid=cosc3380;Pwd=vfegaf$;";
+            conn.Open();
+
+            string payfine = "UPDATE LIBDB.FINE set Amount=Amount-"+ amount + " where UserName='" + username + "'";
+            SqlCommand update_fine = new SqlCommand(payfine, conn);
+            update_fine.ExecuteNonQuery();
+
+            conn.Close();
             return View();
         }
-        
     }
 }
