@@ -108,7 +108,7 @@ namespace LibraryMS
         public void Update(Users updatedUser)
         {
             _context.Users.Update(updatedUser);
-            //_context.Entry(updatedUser).State = EntityState.Modified;
+     
             _context.SaveChanges();
         }
 

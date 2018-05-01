@@ -81,9 +81,9 @@
     </dl>
 </div>
 <div>
-    @if (SignInManager.IsSignedIn(User)) {
+    @if (SignInManager.IsSignedIn(User) && UserServices.GetById(User.Identity.Name).UserType < 4) {
         @Html.ActionLink("Checkout", "Checkout", new { id = Model.MediaId })
-        @Html.ActionLink("Hold", "Hold", new { id = Model.MediaId})
+        //@Html.ActionLink("Hold", "Hold", new { id = Model.MediaId})
                        }
     <a asp-action="Index">| Back to List</a>
 </div>
