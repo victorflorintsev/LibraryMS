@@ -42,6 +42,8 @@ namespace LibraryMS
             outBorrow.IssueDate = DateTime.Today;
             outBorrow.DueDate = DateTime.Today.AddDays(10);
             //outBorrow.Media = _mediacontext.Media.FirstOrDefault(asset => asset.MediaId == bookid);
+            outBorrow.Media = _context.Media.FirstOrDefault(asset => asset.MediaId == bookid);
+
             outBorrow.UserNameNavigation = _context.Users.FirstOrDefault(asset => asset.UserName == username);
 
             _context.Add(outBorrow);
