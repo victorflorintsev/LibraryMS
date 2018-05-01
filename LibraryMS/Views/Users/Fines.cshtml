@@ -1,8 +1,9 @@
 ﻿@model LibraryMS.Users
 
 @{
-    ViewData["Title"] = "Holds";
+    ViewData["Title"] = "Fines";
 }
+
 <link rel="stylesheet" href="~/css/MakeItPretty.css" />
 
 <div class="row">
@@ -10,36 +11,32 @@
         @Html.RenderPartialAsync("UserProfile")
     </div>
     <div class="col-xs-7">
-
         <table class="table">
             <thead>
                 <tr>
                     <th>
                         <br /> <br /> <br />
-                        Position #
+                        Amount
                     </th>
                     <th>
-                        Media ID
+                        Due Date
                     </th>
-
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.IsWaitlistedBy)
+                @foreach (var item in Model.Fine)
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.PositionNum)
+                            @Html.DisplayFor(modelItem => item.Amount)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.MediaId)
+                            @Html.DisplayFor(modelItem => item.DueDate)
                         </td>
-
                     </tr>
                 }
-
             </tbody>
         </table>
-        </div>
+       </div>
     </div>

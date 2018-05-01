@@ -37,6 +37,7 @@ namespace LibraryMS
         public DateTime? MembershipDate { get; set; }
 
         public UserType UserTypeNavigation { get; set; }
+        public ICollection<Media> Media { get; set; }
         public ICollection<Borrow> Borrow { get; set; }
         public ICollection<Employee> Employee { get; set; }
         public ICollection<Fine> Fine { get; set; }
